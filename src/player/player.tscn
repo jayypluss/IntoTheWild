@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8aem4qjchnrf"]
+[gd_scene load_steps=7 format=3 uid="uid://c8aem4qjchnrf"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1"]
 [ext_resource type="Script" path="res://src/player/input.gd" id="2_6ltf4"]
 [ext_resource type="Script" path="res://src/player/camera.gd" id="3_8yr1s"]
 [ext_resource type="Script" path="res://src/player/right_arm.gd" id="4_blojc"]
+[ext_resource type="Script" path="res://src/player/item_list.gd" id="5_6knwf"]
 
 [sub_resource type="CapsuleShape3D" id="5"]
 
@@ -37,5 +38,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.110055, 0.512737, -0.24764)
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/Horizontal/Vertical"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.590641, 0)
+
+[node name="ItemList" type="ItemList" parent="."]
+anchors_preset = -1
+anchor_top = 0.873
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 310.0
+offset_top = 28.296
+offset_right = -379.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+item_count = 2
+max_columns = 10
+item_0/text = "Axe"
+item_1/text = "Hammer"
+script = ExtResource("5_6knwf")
 
 [connection signal="timeout" from="LastPositionTimer" to="." method="_on_LastPositionTimer_timeout"]

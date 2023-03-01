@@ -26,4 +26,3 @@ func pick_item(item: Node3D):
 	item.global_transform = $CameraPivot/Horizontal/Vertical/RightArm/HoldingItem.global_transform
 	item.rotation_degrees.x = -90
 	item.set_freeze_enabled(true)
-
