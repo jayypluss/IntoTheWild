@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3i7ouv8w1qye"]
+
+[ext_resource type="Shader" path="res://test.gdshader" id="1_xesi2"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uabgx"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sxmbi"]
+noise = SubResource("FastNoiseLite_uabgx")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ltk5e"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ygbjv"]
+as_normal_map = true
+noise = SubResource("FastNoiseLite_ltk5e")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gnwfg"]
+render_priority = 0
+shader = ExtResource("1_xesi2")
+shader_parameter/height_scale = 0.5
+shader_parameter/noise = SubResource("NoiseTexture2D_sxmbi")
+shader_parameter/normalmap = SubResource("NoiseTexture2D_ygbjv")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a882i"]
+material = SubResource("ShaderMaterial_gnwfg")
+subdivide_width = 32
+subdivide_depth = 32
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_a882i")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.46104, 0)

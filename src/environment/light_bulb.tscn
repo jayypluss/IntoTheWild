@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://q0aqowhkgjtm"]
+
+[ext_resource type="Script" path="res://src/levels/level_1/light_bulb.gd" id="1_ui35c"]
+
+[node name="LightBulb" type="OmniLight3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.33904, 2.82875, -17.4487)
+light_color = Color(1, 0.933333, 0.670588, 1)
+light_energy = 2.25
+light_specular = 4.293
+shadow_enabled = true
+shadow_bias = 3.2
+omni_range = 19.177
+omni_attenuation = 1.27456
+script = ExtResource("1_ui35c")
+
+[node name="HideTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="ShowTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="ReHideTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="ReShowTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[connection signal="timeout" from="HideTimer" to="." method="_on_blinking_timer_timeout"]
+[connection signal="timeout" from="ShowTimer" to="." method="_on_show_timer_timeout"]
+[connection signal="timeout" from="ReHideTimer" to="." method="_on_re_hide_timer_timeout"]
+[connection signal="timeout" from="ReShowTimer" to="." method="_on_re_show_timer_timeout"]

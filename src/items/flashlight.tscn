@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpukuxwbf56hg"]
+
+[ext_resource type="Script" path="res://src/player/flashlight.gd" id="1_w4ygr"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dakk4"]
+top_radius = 0.03
+bottom_radius = 0.01
+height = 0.2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_chhd0"]
+height = 0.2
+radius = 0.03
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rxe03"]
+
+[node name="Flashlight" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_w4ygr")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+collision_layer = 4
+collision_mask = 3
+mesh = SubResource("CylinderMesh_dakk4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_chhd0")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.000985354, 0.110865, -4.79508e-09)
+layers = 7
+light_energy = 10.0
+shadow_enabled = true
+spot_range = 36.7233
+spot_angle = 51.5956
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.305446, -0.952209, 0, 0.952209, 0.305446, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.412091, 0, 0, 0, 0.412091, 0, 0, 0, 0.412091, 0, 0, 0)
+shape = SubResource("SphereShape3D_rxe03")
+
+[connection signal="body_shape_entered" from="Area3D" to="." method="_on_area_3d_body_shape_entered"]

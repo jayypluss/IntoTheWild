@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://crux4d2qhr8v8"]
+
+[ext_resource type="PackedScene" uid="uid://c8aem4qjchnrf" path="res://src/player/player.tscn" id="1_qtwv6"]
+[ext_resource type="PackedScene" uid="uid://c2pmpc3weqso2" path="res://src/environment/tree/tree.tscn" id="2_07qb1"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ie134"]
+radius = 50.0
+height = 100.0
+
+[sub_resource type="Gradient" id="Gradient_v8v8g"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(0.689626, 1, 0.696068, 1, 0, 0.440336, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_sph5o"]
+seed = 5
+frequency = 0.07
+fractal_gain = 1.0
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bh315"]
+seamless = true
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_v8v8g")
+noise = SubResource("FastNoiseLite_sph5o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qlgsp"]
+albedo_color = Color(0, 0.560784, 0, 1)
+albedo_texture = SubResource("NoiseTexture2D_bh315")
+grow_amount = -4.042
+proximity_fade_distance = 21.31
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ti8j"]
+albedo_color = Color(0, 0.454902, 1, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lfny6"]
+sky_top_color = Color(0.384314, 0.756863, 1, 1)
+sky_horizon_color = Color(0, 1, 0.709804, 1)
+ground_bottom_color = Color(0, 0.454902, 1, 1)
+ground_horizon_color = Color(0, 0.454902, 1, 1)
+
+[sub_resource type="Sky" id="Sky_hk16n"]
+sky_material = SubResource("ProceduralSkyMaterial_lfny6")
+
+[sub_resource type="Environment" id="Environment_x5gw1"]
+background_mode = 2
+background_energy_multiplier = 1.32
+sky = SubResource("Sky_hk16n")
+
+[node name="Level1" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_qtwv6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.260125, 17.1757, -11.1809)
+
+[node name="Land" type="CSGMesh3D" parent="."]
+transform = Transform3D(-1.11285e-08, -1, 0, 0.25459, -4.37114e-08, 0, 0, 0, 1, 0, -9.56672, 0)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+mesh = SubResource("SphereMesh_ie134")
+material = SubResource("StandardMaterial3D_qlgsp")
+
+[node name="Sea" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+radius = 1500.0
+height = 200.0
+sides = 64
+material = SubResource("StandardMaterial3D_4ti8j")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_x5gw1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 505.01, 0)
+light_color = Color(1, 0.760784, 0, 1)
+light_energy = 1.5
+light_indirect_energy = 5.0
+light_angular_distance = 4.55
+
+[node name="Tree" parent="." instance=ExtResource("2_07qb1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.03657, 0)
