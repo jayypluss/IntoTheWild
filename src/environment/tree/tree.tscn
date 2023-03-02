@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c2pmpc3weqso2"]
+[gd_scene load_steps=12 format=3 uid="uid://c2pmpc3weqso2"]
 
 [ext_resource type="Script" path="res://src/environment/tree/tree.gd" id="1_7qi6v"]
 
@@ -17,8 +17,27 @@ albedo_texture = SubResource("NoiseTexture2D_5cesi")
 height = 4.0
 radius = 2.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_djolu"]
-albedo_color = Color(0, 0.960784, 0, 1)
+[sub_resource type="Gradient" id="Gradient_v8v8g"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(0.689626, 1, 0.696068, 1, 0, 0.440336, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_sph5o"]
+seed = 5
+frequency = 0.07
+fractal_gain = 1.0
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bh315"]
+seamless = true
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_v8v8g")
+noise = SubResource("FastNoiseLite_sph5o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tpglu"]
+albedo_color = Color(0, 0.560784, 0, 1)
+albedo_texture = SubResource("NoiseTexture2D_bh315")
+grow_amount = -4.042
+proximity_fade_distance = 21.31
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jmq2m"]
 radius = 2.0
@@ -53,7 +72,7 @@ sleeping = true
 
 [node name="Mesh" type="CSGSphere3D" parent="Bush"]
 radius = 2.0
-material = SubResource("StandardMaterial3D_djolu")
+material = SubResource("StandardMaterial3D_tpglu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bush"]
 shape = SubResource("SphereShape3D_jmq2m")

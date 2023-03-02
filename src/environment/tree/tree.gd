@@ -6,7 +6,7 @@ var is_broken := false
 
 func _physics_process(delta: float) -> void:
 	if !is_broken:	
-		if is_player_near:
+		if is_player_near and GameState.player.is_skill_selected('chopping_magic'):
 			if Input.is_action_pressed('click'):
 				$ProgressBar.visible = true
 				value += 1.0
@@ -31,4 +31,5 @@ func _on_area_3d_body_entered(body):
 func _on_area_3d_body_exited(body):
 	if body == GameState.player:
 		is_player_near = false
-
+		$ProgressBar.visible = false
+		

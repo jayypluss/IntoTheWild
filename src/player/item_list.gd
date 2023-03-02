@@ -1,25 +1,22 @@
 extends ItemList
 
+var shortcuts_allocation := ['chopping_magic', '', '', '', '', '', '', '', '', '']
 
 func _ready():
-	select(0)
+	for i in shortcuts_allocation.size():
+		set_item_text(i, shortcuts_allocation[i])
+
+	select_item(0)
 
 func _process(delta):
 	if Input.is_action_just_pressed('0'):
-		select(0)
-	if Input.is_action_just_pressed('1'):
-		select(1)
-	if Input.is_action_just_pressed('3'):
-		select(3)
-	if Input.is_action_just_pressed('4'):
-		select(4)
-	if Input.is_action_just_pressed('5'):
-		select(5)
-	if Input.is_action_just_pressed('6'):
-		select(6)
-	if Input.is_action_just_pressed('7'):
-		select(7)
-	if Input.is_action_just_pressed('8'):
-		select(8)
-	if Input.is_action_just_pressed('9'):
-		select(9)
+		select_item(9)
+	for i in range(1, 10):
+		if Input.is_action_just_pressed(str(i)):
+			select_item(i-1)
+
+func select_item(idx: int):
+	select(idx)
+	if GameState.player:
+		GameState.player.select_skill(shortcuts_allocation[idx])
+

@@ -1,12 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8aem4qjchnrf"]
+[gd_scene load_steps=13 format=3 uid="uid://c8aem4qjchnrf"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1"]
 [ext_resource type="Script" path="res://src/player/input.gd" id="2_6ltf4"]
 [ext_resource type="Script" path="res://src/player/camera.gd" id="3_8yr1s"]
 [ext_resource type="Script" path="res://src/player/right_arm.gd" id="4_blojc"]
 [ext_resource type="Script" path="res://src/player/item_list.gd" id="5_6knwf"]
+[ext_resource type="Script" path="res://src/player/pressed_input.gd" id="6_4v1iv"]
+[ext_resource type="Script" path="res://src/player/player_skills.gd" id="6_boukr"]
 
 [sub_resource type="CapsuleShape3D" id="5"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tfpew"]
+gravity = Vector3(0, 30, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_syydm"]
+transparency = 1
+albedo_color = Color(1, 0.337255, 0.643137, 0.360784)
+
+[sub_resource type="SphereMesh" id="SphereMesh_tnlqy"]
+material = SubResource("StandardMaterial3D_syydm")
+
+[sub_resource type="LabelSettings" id="LabelSettings_eqxc7"]
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -39,23 +53,149 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.110055, 0.512737, -0.24764)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.590641, 0)
 
-[node name="ItemList" type="ItemList" parent="."]
-anchors_preset = -1
-anchor_top = 0.873
+[node name="Magic" type="GPUParticles3D" parent="CameraPivot/Horizontal/Vertical"]
+collision_base_size = 128.0
+process_material = SubResource("ParticleProcessMaterial_tfpew")
+draw_pass_1 = SubResource("SphereMesh_tnlqy")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 310.0
-offset_top = 28.296
-offset_right = -379.0
-offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemList" type="ItemList" parent="HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.887
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 119.0
+offset_top = -4.776
+offset_right = -119.0
+offset_bottom = -43.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 8
-item_count = 2
+theme_override_font_sizes/font_size = 10
+auto_height = true
+item_count = 10
 max_columns = 10
-item_0/text = "Axe"
-item_1/text = "Hammer"
+fixed_column_width = 82
+item_0/text = "1"
+item_1/text = "2"
+item_2/text = "3"
+item_3/text = "4"
+item_4/text = "5"
+item_5/text = "6"
+item_6/text = "7"
+item_7/text = "8"
+item_8/text = "9"
+item_9/text = "0"
 script = ExtResource("5_6knwf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 123.0
+offset_top = -42.0
+offset_right = -157.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 80
+
+[node name="1" type="Label" parent="HUD/HBoxContainer"]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_eqxc7")
+
+[node name="2" type="Label" parent="HUD/HBoxContainer"]
+layout_mode = 2
+text = "2"
+label_settings = SubResource("LabelSettings_eqxc7")
+
+[node name="3" type="Label" parent="HUD/HBoxContainer"]
+layout_mode = 2
+text = "3"
+label_settings = SubResource("LabelSettings_eqxc7")
+
+[node name="4" type="Label" parent="HUD/HBoxContainer"]
+layout_mode = 2
+text = "4"
+label_settings = SubResource("LabelSettings_eqxc7")
+
+[node name="5" type="Label" parent="HUD/HBoxContainer"]
+layout_mode = 2
+text = "5"
+label_settings = SubResource("LabelSettings_eqxc7")
+
+[node name="6" type="Label" parent="HUD/HBoxContainer"]
+layout_mode = 2
+text = "6"
+label_settings = SubResource("LabelSettings_eqxc7")
+
+[node name="7" type="Label" parent="HUD/HBoxContainer"]
+layout_mode = 2
+text = "7"
+label_settings = SubResource("LabelSettings_eqxc7")
+
+[node name="8" type="Label" parent="HUD/HBoxContainer"]
+layout_mode = 2
+text = "8"
+label_settings = SubResource("LabelSettings_eqxc7")
+
+[node name="9" type="Label" parent="HUD/HBoxContainer"]
+layout_mode = 2
+text = "9"
+label_settings = SubResource("LabelSettings_eqxc7")
+
+[node name="10" type="Label" parent="HUD/HBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_eqxc7")
+
+[node name="Container" type="Control" parent="HUD"]
+layout_mode = 1
+anchor_left = 0.878
+anchor_right = 1.0
+anchor_bottom = 0.111
+offset_left = 0.543945
+offset_bottom = 0.071991
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="HUD/Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.0
+grow_horizontal = 2
+text = "Pressing Input"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="HUD/Container"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -37.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_4v1iv")
+
+[node name="PlayerInventory" type="Node" parent="."]
+
+[node name="PlayerSkills" type="Node" parent="."]
+script = ExtResource("6_boukr")
 
 [connection signal="timeout" from="LastPositionTimer" to="." method="_on_LastPositionTimer_timeout"]

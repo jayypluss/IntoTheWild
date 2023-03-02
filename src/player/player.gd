@@ -26,3 +26,9 @@ func pick_item(item: Node3D):
 	item.global_transform = $CameraPivot/Horizontal/Vertical/RightArm/HoldingItem.global_transform
 	item.rotation_degrees.x = -90
 	item.set_freeze_enabled(true)
+
+func is_skill_selected(skill):
+	return $PlayerSkills.selected_skill == skill
+
+func select_skill(skill):
+	return $PlayerSkills.set_selected_skill(skill)
