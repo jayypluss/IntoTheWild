@@ -32,3 +32,6 @@ func is_skill_selected(skill):
 
 func select_skill(skill):
 	return $PlayerSkills.set_selected_skill(skill)
+
+func obtain_item(item_node: Node3D):
+	print('TO BE IMPLEMENTED - obtaining item: ', item_node.name)

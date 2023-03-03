@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://crux4d2qhr8v8"]
+[gd_scene load_steps=14 format=3 uid="uid://crux4d2qhr8v8"]
 
 [ext_resource type="PackedScene" uid="uid://c8aem4qjchnrf" path="res://src/player/player.tscn" id="1_qtwv6"]
 [ext_resource type="PackedScene" uid="uid://c2pmpc3weqso2" path="res://src/environment/tree/tree.tscn" id="2_07qb1"]
+[ext_resource type="PackedScene" uid="uid://c3rmdc1xwiqqx" path="res://src/items/item.tscn" id="3_b4ed0"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_ie134"]
 radius = 50.0
@@ -46,6 +47,9 @@ background_mode = 2
 background_energy_multiplier = 1.32
 sky = SubResource("Sky_hk16n")
 
+[sub_resource type="PrismMesh" id="PrismMesh_v1rvl"]
+size = Vector3(0.4, 0.4, 0.04)
+
 [node name="Level1" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_qtwv6")]
@@ -81,3 +85,9 @@ light_angular_distance = 4.55
 
 [node name="Tree" parent="." instance=ExtResource("2_07qb1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.03657, 0)
+
+[node name="Leaf1" parent="." instance=ExtResource("3_b4ed0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.511, 4.67274, 0)
+mesh = SubResource("PrismMesh_v1rvl")
+
+[editable path="Leaf1"]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3rmdc1xwiqqx"]
+
+[ext_resource type="Script" path="res://src/items/item.gd" id="1_tj6go"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_iqg6e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v3byp"]
+transparency = 1
+albedo_color = Color(0.588235, 0.384314, 1, 0.384314)
+
+[sub_resource type="TorusMesh" id="TorusMesh_b241x"]
+inner_radius = 0.264
+outer_radius = 0.001
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rsi7p"]
+
+[node name="Item" type="Node3D"]
+script = ExtResource("1_tj6go")
+
+[node name="Aura" type="CSGMesh3D" parent="."]
+mesh = SubResource("SphereMesh_iqg6e")
+material = SubResource("StandardMaterial3D_v3byp")
+
+[node name="Mesh" type="CSGMesh3D" parent="."]
+mesh = SubResource("TorusMesh_b241x")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_rsi7p")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
