@@ -86,8 +86,20 @@ light_angular_distance = 4.55
 [node name="Tree" parent="." instance=ExtResource("2_07qb1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.03657, 0)
 
-[node name="Leaf1" parent="." instance=ExtResource("3_b4ed0")]
+[node name="Leaf" parent="." instance=ExtResource("3_b4ed0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.511, 4.67274, 0)
 mesh = SubResource("PrismMesh_v1rvl")
+title = "Leaf"
 
-[editable path="Leaf1"]
+[node name="Mesh" parent="Leaf" index="1"]
+mesh = SubResource("PrismMesh_v1rvl")
+
+[node name="Item" parent="." instance=ExtResource("3_b4ed0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.10264, 4.9072, -4.60436)
+title = "Item"
+
+[node name="Item2" parent="." instance=ExtResource("3_b4ed0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.15853, 4.9072, -4.60436)
+title = "Item"
+
+[editable path="Leaf"]

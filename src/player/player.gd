@@ -5,6 +5,7 @@ extends CharacterBody3D
 # camera and its orientation.
 
 @onready var camera: Camera3D = %Camera3D
+@onready var hud: Control = $HUD
 
 func _ready():
 	GameState.player = self
@@ -34,4 +35,5 @@ func select_skill(skill):
 	return $PlayerSkills.set_selected_skill(skill)
 
 func obtain_item(item_node: Node3D):
+	hud.add_item_to_inventory(item_node)
 	print('TO BE IMPLEMENTED - obtaining item: ', item_node.name)

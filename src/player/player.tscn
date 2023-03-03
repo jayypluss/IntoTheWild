@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://c8aem4qjchnrf"]
+[gd_scene load_steps=14 format=3 uid="uid://c8aem4qjchnrf"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1"]
 [ext_resource type="Script" path="res://src/player/input.gd" id="2_6ltf4"]
 [ext_resource type="Script" path="res://src/player/camera.gd" id="3_8yr1s"]
 [ext_resource type="Script" path="res://src/player/right_arm.gd" id="4_blojc"]
 [ext_resource type="Script" path="res://src/player/item_list.gd" id="5_6knwf"]
+[ext_resource type="Script" path="res://src/player/hud.gd" id="5_d1wna"]
 [ext_resource type="Script" path="res://src/player/pressed_input.gd" id="6_4v1iv"]
 [ext_resource type="Script" path="res://src/player/player_skills.gd" id="6_boukr"]
 
@@ -71,6 +72,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("5_d1wna")
 
 [node name="ItemList" type="ItemList" parent="HUD"]
 layout_mode = 1
@@ -200,7 +202,20 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("6_4v1iv")
 
-[node name="PlayerInventory" type="Node" parent="."]
+[node name="Inventory" type="ItemList" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.707
+anchor_top = 0.099
+anchor_right = 0.958
+anchor_bottom = 0.863
+offset_left = -0.463989
+offset_top = -0.152008
+offset_right = 0.383911
+offset_bottom = -0.223999
+grow_horizontal = 0
+grow_vertical = 2
 
 [node name="PlayerSkills" type="Node" parent="."]
 script = ExtResource("6_boukr")

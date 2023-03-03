@@ -15,7 +15,7 @@ var has_jumped_sprinting := false
 func _ready():
 	player = self.owner
 
-func _physics_process(delta: float) -> void:		
+func _physics_process(delta: float) -> void:
 	if paused: # Used to prevent movement during a cutscene.
 		return
 	
