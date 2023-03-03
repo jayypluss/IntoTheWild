@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3rmdc1xwiqqx"]
+[gd_scene load_steps=8 format=3 uid="uid://c3rmdc1xwiqqx"]
 
 [ext_resource type="Script" path="res://src/items/item.gd" id="1_tj6go"]
 
@@ -13,6 +13,28 @@ inner_radius = 0.264
 outer_radius = 0.001
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rsi7p"]
+
+[sub_resource type="Animation" id="Animation_3hr6m"]
+resource_name = "mesh_rotation"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kvmnc"]
+_data = {
+"mesh_rotation": SubResource("Animation_3hr6m")
+}
 
 [node name="Item" type="Node3D"]
 script = ExtResource("1_tj6go")
@@ -29,5 +51,11 @@ collision_layer = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_rsi7p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "mesh_rotation"
+libraries = {
+"": SubResource("AnimationLibrary_kvmnc")
+}
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
