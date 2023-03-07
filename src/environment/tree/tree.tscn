@@ -39,7 +39,7 @@ albedo_texture = SubResource("NoiseTexture2D_bh315")
 grow_amount = -4.042
 proximity_fade_distance = 21.31
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_jmq2m"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_bfamy"]
 radius = 2.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_hpc1s"]
@@ -75,7 +75,7 @@ radius = 2.0
 material = SubResource("StandardMaterial3D_tpglu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bush"]
-shape = SubResource("SphereShape3D_jmq2m")
+shape = SubResource("SphereShape3D_bfamy")
 
 [node name="TopHalf" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.40095, 0)
@@ -120,5 +120,10 @@ text = "Chopping tree"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

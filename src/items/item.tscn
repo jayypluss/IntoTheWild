@@ -1,18 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3rmdc1xwiqqx"]
+[gd_scene load_steps=9 format=3 uid="uid://c3rmdc1xwiqqx"]
 
 [ext_resource type="Script" path="res://src/items/item.gd" id="1_tj6go"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_iqg6e"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v3byp"]
-transparency = 1
-albedo_color = Color(0.588235, 0.384314, 1, 0.384314)
-
-[sub_resource type="TorusMesh" id="TorusMesh_b241x"]
-inner_radius = 0.264
-outer_radius = 0.001
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_rsi7p"]
 
 [sub_resource type="Animation" id="Animation_3hr6m"]
 resource_name = "mesh_rotation"
@@ -36,21 +24,25 @@ _data = {
 "mesh_rotation": SubResource("Animation_3hr6m")
 }
 
-[node name="Item" type="Node3D"]
-script = ExtResource("1_tj6go")
+[sub_resource type="SphereMesh" id="SphereMesh_iqg6e"]
 
-[node name="Aura" type="CSGMesh3D" parent="."]
-mesh = SubResource("SphereMesh_iqg6e")
-material = SubResource("StandardMaterial3D_v3byp")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v3byp"]
+transparency = 1
+albedo_color = Color(0, 0.384314, 1, 0.317647)
 
-[node name="Mesh" type="CSGMesh3D" parent="."]
-mesh = SubResource("TorusMesh_b241x")
+[sub_resource type="SphereShape3D" id="SphereShape3D_kkxb2"]
+radius = 0.8
 
-[node name="Area3D" type="Area3D" parent="."]
+[sub_resource type="SphereShape3D" id="SphereShape3D_226qx"]
+radius = 0.82
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rsi7p"]
+radius = 1.2
+
+[node name="Item" type="RigidBody3D"]
 collision_layer = 4
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("SphereShape3D_rsi7p")
+collision_mask = 2
+script = ExtResource("1_tj6go")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "mesh_rotation"
@@ -58,4 +50,27 @@ libraries = {
 "": SubResource("AnimationLibrary_kvmnc")
 }
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[node name="Aura" type="CSGMesh3D" parent="."]
+mesh = SubResource("SphereMesh_iqg6e")
+material = SubResource("StandardMaterial3D_v3byp")
+
+[node name="Mesh" type="CSGMesh3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_kkxb2")
+
+[node name="FloorCheckArea3D" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorCheckArea3D"]
+shape = SubResource("SphereShape3D_226qx")
+
+[node name="PlayerCheckArea3D" type="Area3D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCheckArea3D"]
+shape = SubResource("SphereShape3D_rsi7p")
+
+[connection signal="body_entered" from="FloorCheckArea3D" to="." method="_on_area_3d_floor_check_body_entered"]
+[connection signal="body_entered" from="PlayerCheckArea3D" to="." method="_on_area_3d_player_check_body_entered"]
