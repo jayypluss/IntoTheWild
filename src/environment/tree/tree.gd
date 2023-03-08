@@ -22,6 +22,7 @@ func break_tree():
 	$Bush.apply_impulse(Vector3(0, 0, 5))
 	$WoodTrunk.is_dettached = true
 	$WoodTrunk.apply_impulse(Vector3(0, 0, -5))
+	$WoodTrunk.reparent(get_tree().current_scene)
 	is_broken = true
 	$ProgressBar.visible = false
 	$Timer.start()
