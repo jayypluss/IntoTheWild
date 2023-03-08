@@ -8,7 +8,7 @@ var selected_skill := 'chopping_magic'
 var is_casting_magic := false
 
 func _process(_delta):
-	if Input.is_action_just_pressed('click'):
+	if Input.is_action_just_pressed('click') && !GameState.player.both_hands_busy:
 		is_casting_magic = true
 		if magic:
 			magic.emitting = true

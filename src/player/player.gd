@@ -6,7 +6,23 @@ extends CharacterBody3D
 
 @onready var camera: Camera3D = %Camera3D
 @onready var hud: Control = $HUD
+@onready var hand: Node3D = $CameraPivot/Horizontal/Vertical/Hand
 
+var both_hands_busy := false
+
+var items_near:= []
+var closest_holdable: Node3D
+
+func _physics_process(_delta):
+	if (Input.is_action_just_pressed('collect')):
+		if items_near.size() > 0:
+			for i in items_near.size():
+				if items_near[i].is_in_group('Collectable'):
+					obtain_item(items_near[i])
+					items_near.remove_at(i)
+		elif closest_holdable:
+			hold_item(closest_holdable, 'above')
+		
 func _ready():
 	GameState.player = self
 	check_everything_is_not_null()
@@ -21,12 +37,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 	else:
 		return []
 
-func pick_item(item: Node3D):
-#	item.reparent($CameraPivot/Horizontal/Vertical/RightArm/HoldingItem)
-	item.call_deferred("reparent", $CameraPivot/Horizontal/Vertical/RightArm/HoldingItem)
-	item.global_transform = $CameraPivot/Horizontal/Vertical/RightArm/HoldingItem.global_transform
-	item.rotation_degrees.x = -90
-	item.set_freeze_enabled(true)
+func hold_item(item: Node3D, item_placement: String = 'right'):
+	hand.hold_item(item, item_placement)
 
 func is_skill_selected(skill):
 	return $PlayerSkills.selected_skill == skill
@@ -37,3 +49,25 @@ func select_skill(skill):
 func obtain_item(item_node: Node3D):
 	hud.add_item_to_inventory(item_node)
 	print('TO BE IMPLEMENTED - obtaining item: ', item_node.name)
+
+func _on_interaction_field_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
+	print('area: ', area)
+	print('area.owner: ', area.owner)
+	print('area.owner.name: ', area.owner.name)
+	if area and area.owner:
+		if area.owner.is_in_group('Collectable'):
+			items_near.append(area.owner)
+		elif area.owner.is_in_group('Holdable'):
+			closest_holdable = area.owner
+
+func _on_interaction_field_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
+	print('area: ', area)
+	print('area.owner: ', area.owner)
+	print('area.owner.name: ', area.owner.name)
+	if area and area.owner:
+		if area.owner.is_in_group('Collectable'):
+			var idx = items_near.find(area.owner)
+			items_near.remove_at(idx)
+		elif (area.owner.is_in_group('Holdable') 
+			and closest_holdable == area.owner):
+				closest_holdable = null

@@ -37,8 +37,8 @@ func toggle_light():
 		light.show()
 
 func _on_area_3d_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	if body.has_method('pick_item'):
-		body.pick_item(self)
+	if body.has_method('hold_item'):
+		body.hold_item(self)
 	if light and !light.visible:
 		light.show()
 

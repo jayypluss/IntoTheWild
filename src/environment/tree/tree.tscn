@@ -1,21 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://c2pmpc3weqso2"]
+[gd_scene load_steps=13 format=3 uid="uid://c2pmpc3weqso2"]
 
 [ext_resource type="Script" path="res://src/environment/tree/tree.gd" id="1_7qi6v"]
+[ext_resource type="Script" path="res://src/environment/tree/wood_trunk.gd" id="2_p1qev"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4nfus"]
 seed = 2
 frequency = 0.055
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5cesi"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rgy7t"]
 noise = SubResource("FastNoiseLite_4nfus")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3wup"]
 albedo_color = Color(0.423529, 0.309804, 0, 1)
-albedo_texture = SubResource("NoiseTexture2D_5cesi")
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_c2je4"]
-height = 4.0
-radius = 2.0
+albedo_texture = SubResource("NoiseTexture2D_rgy7t")
 
 [sub_resource type="Gradient" id="Gradient_v8v8g"]
 offsets = PackedFloat32Array(0.2, 1)
@@ -45,6 +42,10 @@ radius = 2.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_hpc1s"]
 height = 3.0
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_c2je4"]
+height = 4.0
+radius = 2.0
+
 [node name="Tree" type="Node3D"]
 script = ExtResource("1_7qi6v")
 
@@ -57,15 +58,8 @@ height = 1.0
 sides = 32
 material = SubResource("StandardMaterial3D_f3wup")
 
-[node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("CylinderShape3D_c2je4")
-
 [node name="Bush" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.73212, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.67787, 0)
 collision_layer = 2
 collision_mask = 3
 sleeping = true
@@ -77,21 +71,30 @@ material = SubResource("StandardMaterial3D_tpglu")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bush"]
 shape = SubResource("SphereShape3D_bfamy")
 
-[node name="TopHalf" type="RigidBody3D" parent="."]
+[node name="WoodTrunk" type="RigidBody3D" parent="." groups=["Holdables"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.40095, 0)
 collision_layer = 2
 collision_mask = 3
 sleeping = true
+script = ExtResource("2_p1qev")
 
-[node name="Mesh" type="CSGCylinder3D" parent="TopHalf"]
+[node name="Mesh" type="CSGCylinder3D" parent="WoodTrunk"]
 collision_layer = 2
 collision_mask = 3
 height = 3.0
 sides = 32
 material = SubResource("StandardMaterial3D_f3wup")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TopHalf"]
+[node name="WoodTrunkCollision" type="CollisionShape3D" parent="WoodTrunk"]
 shape = SubResource("CylinderShape3D_hpc1s")
+
+[node name="WoodInteractionArea" type="Area3D" parent="WoodTrunk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.40095, 0)
+collision_layer = 8
+collision_mask = 8
+
+[node name="WoodAreaCollision" type="CollisionShape3D" parent="WoodTrunk/WoodInteractionArea"]
+shape = SubResource("CylinderShape3D_c2je4")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 visible = false
@@ -124,6 +127,7 @@ vertical_alignment = 1
 wait_time = 4.0
 one_shot = true
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="area_shape_entered" from="WoodTrunk/WoodInteractionArea" to="WoodTrunk" method="_on_wood_interaction_area_area_shape_entered"]
+[connection signal="area_shape_exited" from="WoodTrunk/WoodInteractionArea" to="." method="_on_wood_interaction_area_area_shape_exited"]
+[connection signal="area_shape_exited" from="WoodTrunk/WoodInteractionArea" to="WoodTrunk" method="_on_wood_interaction_area_area_shape_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

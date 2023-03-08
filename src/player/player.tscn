@@ -1,15 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://c8aem4qjchnrf"]
+[gd_scene load_steps=15 format=3 uid="uid://c8aem4qjchnrf"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1"]
 [ext_resource type="Script" path="res://src/player/input.gd" id="2_6ltf4"]
 [ext_resource type="Script" path="res://src/player/camera.gd" id="3_8yr1s"]
-[ext_resource type="Script" path="res://src/player/right_arm.gd" id="4_blojc"]
+[ext_resource type="Script" path="res://src/player/hand.gd" id="4_y05fh"]
 [ext_resource type="Script" path="res://src/player/item_list.gd" id="5_6knwf"]
 [ext_resource type="Script" path="res://src/player/hud.gd" id="5_d1wna"]
 [ext_resource type="Script" path="res://src/player/pressed_input.gd" id="6_4v1iv"]
 [ext_resource type="Script" path="res://src/player/player_skills.gd" id="6_boukr"]
 
 [sub_resource type="CapsuleShape3D" id="5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pt7xa"]
+radius = 2.65
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tfpew"]
 
@@ -39,6 +42,13 @@ shape = SubResource("5")
 [node name="Input" type="Node" parent="."]
 script = ExtResource("2_6ltf4")
 
+[node name="InteractionField" type="Area3D" parent="." groups=["PlayerInteractionFields"]]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionField"]
+shape = SubResource("SphereShape3D_pt7xa")
+
 [node name="CameraPivot" type="Node3D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_8yr1s")
@@ -47,11 +57,8 @@ script = ExtResource("3_8yr1s")
 
 [node name="Vertical" type="Node3D" parent="CameraPivot/Horizontal"]
 
-[node name="RightArm" type="Node3D" parent="CameraPivot/Horizontal/Vertical"]
-script = ExtResource("4_blojc")
-
-[node name="HoldingItem" type="Node3D" parent="CameraPivot/Horizontal/Vertical/RightArm"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.110055, 0.512737, -0.24764)
+[node name="Hand" type="Node3D" parent="CameraPivot/Horizontal/Vertical"]
+script = ExtResource("4_y05fh")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot/Horizontal/Vertical"]
 unique_name_in_owner = true
@@ -59,6 +66,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.590641, 0)
 
 [node name="Magic" type="GPUParticles3D" parent="CameraPivot/Horizontal/Vertical"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+emitting = false
 amount = 1
 speed_scale = 3.59
 local_coords = true
@@ -221,3 +229,5 @@ grow_vertical = 2
 script = ExtResource("6_boukr")
 
 [connection signal="timeout" from="LastPositionTimer" to="." method="_on_LastPositionTimer_timeout"]
+[connection signal="area_shape_entered" from="InteractionField" to="." method="_on_interaction_field_area_shape_entered"]
+[connection signal="area_shape_exited" from="InteractionField" to="." method="_on_interaction_field_area_shape_exited"]

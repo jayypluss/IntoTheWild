@@ -5,7 +5,7 @@ var items: Dictionary = {  }
 
 
 func _process(delta):
-	if Input.is_action_just_pressed('I'):
+	if Input.is_action_just_pressed('toggle_inventory'):
 		inventory.visible = !inventory.visible
 
 func add_item_to_inventory(item_node: Node3D):

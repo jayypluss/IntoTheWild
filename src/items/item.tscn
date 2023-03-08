@@ -9,7 +9,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mesh:rotation")
+tracks/0/path = NodePath("ItemCSGMesh3D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -39,7 +39,7 @@ radius = 0.82
 [sub_resource type="SphereShape3D" id="SphereShape3D_rsi7p"]
 radius = 1.2
 
-[node name="Item" type="RigidBody3D"]
+[node name="Item" type="RigidBody3D" groups=["Collectables"]]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_tj6go")
@@ -54,23 +54,25 @@ libraries = {
 mesh = SubResource("SphereMesh_iqg6e")
 material = SubResource("StandardMaterial3D_v3byp")
 
-[node name="Mesh" type="CSGMesh3D" parent="."]
+[node name="ItemCSGMesh3D" type="CSGMesh3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="ItemCollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_kkxb2")
 
-[node name="FloorCheckArea3D" type="Area3D" parent="."]
-collision_layer = 4
+[node name="ItemFloorCheckArea3D" type="Area3D" parent="."]
+collision_layer = 8
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorCheckArea3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ItemFloorCheckArea3D"]
 shape = SubResource("SphereShape3D_226qx")
 
-[node name="PlayerCheckArea3D" type="Area3D" parent="."]
-collision_layer = 4
+[node name="ItemPlayerCheckArea3D" type="Area3D" parent="." groups=["CollectableAreas"]]
+collision_layer = 8
+collision_mask = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCheckArea3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ItemPlayerCheckArea3D"]
 shape = SubResource("SphereShape3D_rsi7p")
 
-[connection signal="body_entered" from="FloorCheckArea3D" to="." method="_on_area_3d_floor_check_body_entered"]
-[connection signal="body_entered" from="PlayerCheckArea3D" to="." method="_on_area_3d_player_check_body_entered"]
+[connection signal="body_entered" from="ItemFloorCheckArea3D" to="." method="_on_area_3d_floor_check_body_entered"]
+[connection signal="body_entered" from="ItemPlayerCheckArea3D" to="." method="_on_area_3d_player_check_body_entered"]
+[connection signal="body_exited" from="ItemPlayerCheckArea3D" to="." method="_on_player_check_area_3d_body_exited"]
