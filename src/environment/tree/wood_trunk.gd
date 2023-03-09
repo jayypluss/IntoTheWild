@@ -1,7 +1,6 @@
 extends RigidBody3D
 
 var is_player_near:= false
-var is_dettached:= false
 
 func trigger1():
 	reparent(get_tree().current_scene, true)

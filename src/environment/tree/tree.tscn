@@ -71,7 +71,7 @@ material = SubResource("StandardMaterial3D_tpglu")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bush"]
 shape = SubResource("SphereShape3D_bfamy")
 
-[node name="WoodTrunk" type="RigidBody3D" parent="." groups=["Holdables"]]
+[node name="WoodTrunk" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.40095, 0)
 collision_layer = 2
 collision_mask = 3

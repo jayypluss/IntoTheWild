@@ -20,7 +20,7 @@ func _physics_process(_delta: float) -> void:
 		
 func break_tree():
 	$Bush.apply_impulse(Vector3(0, 0, 5))
-	$WoodTrunk.is_dettached = true
+	$WoodTrunk.add_to_group('Holdables')
 	$WoodTrunk.apply_impulse(Vector3(0, 0, -5))
 	$WoodTrunk.reparent(get_tree().current_scene)
 	is_broken = true

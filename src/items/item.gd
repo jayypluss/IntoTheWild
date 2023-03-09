@@ -16,9 +16,9 @@ func _ready():
 	if csg_mesh:
 		csg_mesh.mesh = mesh
 	
-func _process(_delta):
-	if is_player_near and Input.is_action_just_pressed('collect'):
-		GameState.player.obtain_item(self)
+#func _process(_delta):
+#	if is_player_near and Input.is_action_just_pressed('collect'):
+#		GameState.player.obtain_item(self)
 	
 func _enter_tree():
 	apply_impulse(Vector3(0, 0, randi_range(-5,5)))

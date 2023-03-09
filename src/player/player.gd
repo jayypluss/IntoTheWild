@@ -13,7 +13,7 @@ var both_hands_busy := false
 var items_near:= []
 var closest_holdable: Node3D
 
-func _physics_process(_delta):
+func _process(_delta):
 	if Input.is_action_just_pressed('collect'):
 		if items_near.size() > 0:
 			for i in items_near.size():
@@ -22,8 +22,6 @@ func _physics_process(_delta):
 					items_near.remove_at(i)
 		elif closest_holdable:
 			hold_item(closest_holdable, 'above')
-			
-#	print('closest_holdable: ', closest_holdable)
 		
 func _ready():
 	GameState.player = self
@@ -53,25 +51,32 @@ func obtain_item(item_node: Node3D):
 	print('TO BE IMPLEMENTED - obtaining item: ', item_node.name)
 
 func _on_interaction_field_area_shape_entered(area_rid, area: Area3D, area_shape_index, local_shape_index):
-	print('area: ', area)
 	if area and area.get_parent():
-		print('area.get_parent(): ', area.get_parent())
-		if area.get_parent().is_in_group('Collectable'):
-			var idx = items_near.find(area.get_parent())
-			items_near.remove_at(idx)
-		elif (area.get_parent().is_in_group('Holdable') 
-			and closest_holdable == area.get_parent()):
-				closest_holdable = null
+		var parent = area.get_parent()
+		print('got near ', parent)
+		print('groups it has: ', parent.get_groups())
+		if parent.is_in_group('Collectables'):
+			if items_near.find(parent) < 1:
+				items_near.append(parent)
+		elif parent.is_in_group('Holdables'):
+				closest_holdable = parent
+				
+	print('items_near: ', items_near)
+	print('closest_holdable: ', closest_holdable)
 	
 	
 
 func _on_interaction_field_area_shape_exited(area_rid, area: Area3D, area_shape_index, local_shape_index):
-	print('area: ', area)
 	if area and area.get_parent():
-		print('area.get_parent(): ', area.get_parent())
-		if area.get_parent().is_in_group('Collectable'):
+		var parent = area.get_parent()
+		print('got far from ', parent)
+		print('groups it has: ', parent.get_groups())
+		if area.get_parent().is_in_group('Collectables'):
 			var idx = items_near.find(area.get_parent())
 			items_near.remove_at(idx)
-		elif (area.get_parent().is_in_group('Holdable') 
+		elif (area.get_parent().is_in_group('Holdables') 
 			and closest_holdable == area.get_parent()):
 				closest_holdable = null
+
+	print('items_near: ', items_near)
+	print('closest_holdable: ', closest_holdable)
