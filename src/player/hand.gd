@@ -20,36 +20,36 @@ func _physics_process(_delta):
 			
 	if (Input.is_action_just_pressed('click')
 		and get_child_count() > 1
-		and get_child(1, true).has_method('trigger1')):
-			get_child(1, true).trigger1()
+		and get_child(0, true).has_method('trigger1')):
+			get_child(0, true).trigger1()
 	if (Input.is_action_just_pressed('right_click')
 		and get_child_count() > 1
-		and get_child(1, true).has_method('trigger2')):
-			get_child(1, true).trigger2()
+		and get_child(0, true).has_method('trigger2')):
+			get_child(0, true).trigger2()
 			
 func hold_item(item: Node3D, item_placement: String = 'right'):
 	holding_item = item
 	holding_item_pos = item_placement
 	
-	holding_item.call_deferred('reparent', self)
+	call_deferred("temp", item, item_placement)
 	
-	$Timer.start()
-
-func _on_timer_timeout():	
-	holding_item.remove_from_group('Holdables')
-	if holding_item_pos == 'right':
+func temp(item, item_placement) -> void:
+	item.reparent(self)
+	item.remove_from_group('Holdables')
+	if item_placement == 'right':
 		position = Vector3(0.11, 0.513, -0.248)
-	elif holding_item_pos == 'above':
+	elif item_placement == 'above':
 		position = Vector3(0.7, 1.3, -0.248)
 		
-	holding_item.global_transform = global_transform
-	holding_item.rotation_degrees.x = 90
+	item.global_transform = global_transform
+	item.rotation_degrees.x = 90
 	
-	if holding_item.is_class('PhysicsBody3D'):
-		holding_item.set_freeze_enabled(true)
+	if item.is_class('PhysicsBody3D'):
+		item.set_freeze_enabled(true)
 		
-	if holding_item.find_child('WoodTrunkCollision'):
-		holding_item.find_child('WoodTrunkCollision').call_deferred('set_disabled', true)
+	if item.find_child('WoodTrunkCollision'):
+		item.find_child('WoodTrunkCollision').call_deferred('set_disabled', true)
+  
 
 func obtain_item(item_node: Node3D):
 	var idx = items_near.find(item_node)
