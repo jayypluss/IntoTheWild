@@ -26,12 +26,12 @@ func _process(_delta):
 			get_child(0, true).trigger2()
 			
 func hold_item(item: Node3D, item_placement: String = 'right'):
+	item.remove_from_group('Holdables')
 	item.print_tree_pretty()
 	if item_placement == 'right':
 		position = Vector3(0.11, 0.513, -0.248)
 	elif item_placement == 'above':
 		position = Vector3(0.7, 1.3, -0.248)
-	item.remove_from_group('Holdables')
 
 	item.call_deferred('reparent', self)
 	is_holding_something = true
