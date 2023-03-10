@@ -4,12 +4,13 @@ extends RigidBody3D
 
 var is_player_near:= false
 
-func trigger1():
+func trigger1() -> bool:
 	add_to_group('Holdables')
 	reparent(get_tree().current_scene, true)
 	wood_trunk_collision.call_deferred('set_disabled', false)
 	set_freeze_enabled(false)
 	apply_impulse(Vector3(10, 0, 0))
+	return true
 	
 func _on_wood_interaction_area_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
 	if area.is_in_group('PlayerInteractionFields'):

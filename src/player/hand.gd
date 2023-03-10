@@ -21,11 +21,17 @@ func _physics_process(_delta):
 	if (Input.is_action_just_pressed('click')
 		and get_child_count() > 0
 		and get_child(0, true).has_method('trigger1')):
-			get_child(0, true).trigger1()
+			var throw = get_child(0, true).trigger1()
+			if throw:
+				holding_item = null
+				holding_item_pos = ''
 	if (Input.is_action_just_pressed('right_click')
 		and get_child_count() > 0
 		and get_child(0, true).has_method('trigger2')):
-			get_child(0	, true).trigger2()
+			var throw = get_child(0	, true).trigger2()
+			if throw:
+				holding_item = null
+				holding_item_pos = ''
 			
 func hold_item(item: Node3D, item_placement: String = 'right'):
 	holding_item = item
