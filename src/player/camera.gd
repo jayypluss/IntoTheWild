@@ -28,7 +28,7 @@ func _input(event: InputEvent) -> void:
 #  if get_parent().paused: # Used to prevent camera movement when returning from a cutscene.
 #    return
 
-	var zoom = get_node("%PlayerCam").position.z
+	var _zoom = get_node("%PlayerCam").position.z
 
 	if event is InputEventMouseMotion:
 		horizontal -= event.relative.x * 0.1

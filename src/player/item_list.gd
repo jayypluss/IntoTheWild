@@ -8,7 +8,7 @@ func _ready():
 
 	select_item(0)
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed('0'):
 		select_item(9)
 	for i in range(1, 10):

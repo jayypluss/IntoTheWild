@@ -4,12 +4,11 @@ extends Control
 var items: Dictionary = {  }
 
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed('toggle_inventory'):
 		inventory.visible = !inventory.visible
 
 func add_item_to_inventory(item_node: Node3D):
-	print('adding item to inventory: ', item_node.title)
 	if items.has(item_node.title):
 		items[item_node.title].quantity += 1
 		inventory.set_item_text(items[item_node.title].index, (item_node.title + '  x' + str(items[item_node.title].quantity)))
