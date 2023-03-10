@@ -28,19 +28,28 @@ func _process(_delta):
 			get_child(0, true).trigger2()
 			
 func hold_item(item: Node3D, item_placement: String = 'right'):
+	print_tree_pretty()
+	
+	item.call_deferred('reparent', self)
+	
 	item.remove_from_group('Holdables')
 	if item_placement == 'right':
 		position = Vector3(0.11, 0.513, -0.248)
 	elif item_placement == 'above':
 		position = Vector3(0.7, 1.3, -0.248)
 
-	item.call_deferred('reparent', self)
 	is_holding_something = true
 	item.global_transform = global_transform
 	item.rotation_degrees.x = 90
-	if item.find_child('CollisionShape3D'):
-		item.find_child('CollisionShape3D').call_deferred('set_disabled', true)
-	item.set_freeze_enabled(true)
+	
+	if item.is_class('PhysicsBody3D'):
+		item.set_freeze_enabled(true)
+		
+	if item.find_child('WoodTrunkCollision'):
+		item.find_child('WoodTrunkCollision').call_deferred('set_disabled', true)
+	
+	print_tree_pretty()
+		
 
 func obtain_item(item_node: Node3D):
 	var idx = items_near.find(item_node)
