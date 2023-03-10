@@ -15,20 +15,20 @@ var v_acceleration := 10
 
 func _ready() -> void:
 #	if (ConfigsState.camera_distance):
-#		get_node("%Camera3D").position.z = ConfigsState.camera_distance
+#		get_node("%PlayerCam").position.z = ConfigsState.camera_distance
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 # 	Prevent camera from colliding with player.
-# 	$Horizontal/Vertical/Camera3D.add_exception(get_parent())
+# 	$Horizontal/Vertical/PlayerCam.add_exception(get_parent())
 # 	Fetch draw distance from configuration file.
 
-#	$Horizontal/Vertical/Camera3D.far = ConfigsState.camera_far
+#	$Horizontal/Vertical/PlayerCam.far = ConfigsState.camera_far
 
 func _input(event: InputEvent) -> void:
 #  if get_parent().paused: # Used to prevent camera movement when returning from a cutscene.
 #    return
 
-	var zoom = get_node("%Camera3D").position.z
+	var zoom = get_node("%PlayerCam").position.z
 
 	if event is InputEventMouseMotion:
 		horizontal -= event.relative.x * 0.1

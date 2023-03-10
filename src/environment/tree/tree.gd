@@ -1,36 +1,51 @@
 extends Node3D
 
+
+@onready var progress_bar = $ProgressBar
+@onready var wood_trunk = $WoodTrunk
+@onready var bush = $Bush
+@onready var timer = $Timer
+
 var is_player_near := false
-var value := 0.0
+var chopping_progress := 0.0
 var is_broken := false
 
+
 func _physics_process(_delta: float) -> void:
-	if !is_broken:
-		if ($WoodTrunk 
-			and $WoodTrunk.is_player_near 
-			and GameState.player.is_skill_selected('chopping_magic')):
-				if Input.is_action_pressed('click'):
-					$ProgressBar.visible = true
-					value += 1.0
-					$ProgressBar.value = value
-				if Input.is_action_just_released('click'):
-					$ProgressBar.visible = false
-				if (value >= 100.0):
-					break_tree()
+	if (wood_trunk and wood_trunk.is_player_near 
+		and !is_broken 
+		and GameState.player.is_skill_selected('chopping_magic')):
+			if Input.is_action_pressed('click'):
+				progress_bar.visible = true
+				increment_value()
+				progress_bar.value = chopping_progress
+			if Input.is_action_just_released('click'):
+				progress_bar.visible = false
+			if (chopping_progress >= 100.0):
+				break_tree()
 		
+func increment_value():
+	chopping_progress += 1.0
+	
+func get_chopping_progress():
+	return chopping_progress
+	
+func get_progress_bar():
+	return progress_bar
+
 func break_tree():
-	$Bush.apply_impulse(Vector3(0, 0, 5))
-	$WoodTrunk.add_to_group('Holdables')
-	$WoodTrunk.apply_impulse(Vector3(0, 0, -5))
-	$WoodTrunk.reparent(get_tree().current_scene)
+	bush.apply_impulse(Vector3(0, 0, 5))
+	wood_trunk.add_to_group('Holdables')
+	wood_trunk.apply_impulse(Vector3(0, 0, -5))
+	wood_trunk.reparent(get_tree().current_scene)
 	is_broken = true
-	$ProgressBar.visible = false
-	$Timer.start()
+	progress_bar.visible = false
+	timer.start()
 		
 func _on_wood_interaction_area_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
 	if area.is_in_group('PlayerInteractionFields'):
 		if !is_broken:
-			$ProgressBar.visible = false
+			progress_bar.visible = false
 
 	
 func _on_timer_timeout():
@@ -41,10 +56,10 @@ func _on_timer_timeout():
 			item_instance.title = item_datum
 			item_instance.mesh = preload('res://src/items/meshes/leaf_mesh.tres')
 			get_tree().current_scene.add_child(item_instance)
-			item_instance.global_position = $Bush.global_position
-	$Bush.queue_free()
+			item_instance.global_position = bush.global_position
+	bush.queue_free()
 	clean()
 	
 func clean():
-	$ProgressBar.queue_free()
-	$Timer.queue_free()
+	progress_bar.queue_free()
+	timer.queue_free()

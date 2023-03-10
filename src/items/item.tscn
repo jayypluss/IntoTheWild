@@ -9,7 +9,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ItemCSGMesh3D:rotation")
+tracks/0/path = NodePath("VariableMesh:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -50,29 +50,29 @@ libraries = {
 "": SubResource("AnimationLibrary_kvmnc")
 }
 
-[node name="Aura" type="CSGMesh3D" parent="."]
+[node name="AuraMesh" type="CSGMesh3D" parent="."]
 mesh = SubResource("SphereMesh_iqg6e")
 material = SubResource("StandardMaterial3D_v3byp")
 
-[node name="ItemCSGMesh3D" type="CSGMesh3D" parent="."]
+[node name="VariableMesh" type="CSGMesh3D" parent="."]
 
-[node name="ItemCollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_kkxb2")
 
-[node name="ItemFloorCheckArea3D" type="Area3D" parent="."]
+[node name="FloorCheck" type="Area3D" parent="."]
 collision_layer = 8
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ItemFloorCheckArea3D"]
+[node name="Collision" type="CollisionShape3D" parent="FloorCheck"]
 shape = SubResource("SphereShape3D_226qx")
 
-[node name="ItemPlayerCheckArea3D" type="Area3D" parent="." groups=["CollectableAreas"]]
+[node name="PlayerCheck" type="Area3D" parent="." groups=["CollectableAreas"]]
 collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ItemPlayerCheckArea3D"]
+[node name="Collision" type="CollisionShape3D" parent="PlayerCheck"]
 shape = SubResource("SphereShape3D_rsi7p")
 
-[connection signal="body_entered" from="ItemFloorCheckArea3D" to="." method="_on_area_3d_floor_check_body_entered"]
-[connection signal="body_entered" from="ItemPlayerCheckArea3D" to="." method="_on_area_3d_player_check_body_entered"]
-[connection signal="body_exited" from="ItemPlayerCheckArea3D" to="." method="_on_player_check_area_3d_body_exited"]
+[connection signal="body_entered" from="FloorCheck" to="." method="_on_area_3d_floor_check_body_entered"]
+[connection signal="body_entered" from="PlayerCheck" to="." method="_on_area_3d_player_check_body_entered"]
+[connection signal="body_exited" from="PlayerCheck" to="." method="_on_player_check_area_3d_body_exited"]

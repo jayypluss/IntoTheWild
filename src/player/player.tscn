@@ -57,14 +57,14 @@ script = ExtResource("3_8yr1s")
 
 [node name="Vertical" type="Node3D" parent="CameraPivot/Horizontal"]
 
-[node name="Hand" type="Node3D" parent="CameraPivot/Horizontal/Vertical"]
+[node name="PlayerHand" type="Node3D" parent="CameraPivot/Horizontal/Vertical"]
 script = ExtResource("4_y05fh")
 
-[node name="Camera3D" type="Camera3D" parent="CameraPivot/Horizontal/Vertical"]
+[node name="PlayerCam" type="Camera3D" parent="CameraPivot/Horizontal/Vertical"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.590641, 0)
 
-[node name="Magic" type="GPUParticles3D" parent="CameraPivot/Horizontal/Vertical"]
+[node name="PlayerEmitter" type="GPUParticles3D" parent="CameraPivot/Horizontal/Vertical"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 emitting = false
 amount = 1
@@ -73,7 +73,8 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_tfpew")
 draw_pass_1 = SubResource("CylinderMesh_dce40")
 
-[node name="HUD" type="Control" parent="."]
+[node name="PlayerHUD" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -82,7 +83,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_d1wna")
 
-[node name="ItemList" type="ItemList" parent="HUD"]
+[node name="ItemList" type="ItemList" parent="PlayerHUD"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.887
@@ -113,7 +114,7 @@ item_8/text = "9"
 item_9/text = "0"
 script = ExtResource("5_6knwf")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerHUD"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -127,64 +128,64 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 85
 
-[node name="1" type="Label" parent="HUD/HBoxContainer"]
+[node name="1" type="Label" parent="PlayerHUD/HBoxContainer"]
 layout_mode = 2
 text = "1"
 label_settings = SubResource("LabelSettings_eqxc7")
 
-[node name="2" type="Label" parent="HUD/HBoxContainer"]
+[node name="2" type="Label" parent="PlayerHUD/HBoxContainer"]
 layout_mode = 2
 text = "2"
 label_settings = SubResource("LabelSettings_eqxc7")
 
-[node name="3" type="Label" parent="HUD/HBoxContainer"]
+[node name="3" type="Label" parent="PlayerHUD/HBoxContainer"]
 layout_mode = 2
 text = "3"
 label_settings = SubResource("LabelSettings_eqxc7")
 
-[node name="4" type="Label" parent="HUD/HBoxContainer"]
+[node name="4" type="Label" parent="PlayerHUD/HBoxContainer"]
 layout_mode = 2
 text = "4"
 label_settings = SubResource("LabelSettings_eqxc7")
 
-[node name="5" type="Label" parent="HUD/HBoxContainer"]
+[node name="5" type="Label" parent="PlayerHUD/HBoxContainer"]
 layout_mode = 2
 text = "5"
 label_settings = SubResource("LabelSettings_eqxc7")
 
-[node name="6" type="Label" parent="HUD/HBoxContainer"]
+[node name="6" type="Label" parent="PlayerHUD/HBoxContainer"]
 layout_mode = 2
 text = "6"
 label_settings = SubResource("LabelSettings_eqxc7")
 
-[node name="7" type="Label" parent="HUD/HBoxContainer"]
+[node name="7" type="Label" parent="PlayerHUD/HBoxContainer"]
 layout_mode = 2
 text = "7"
 label_settings = SubResource("LabelSettings_eqxc7")
 
-[node name="8" type="Label" parent="HUD/HBoxContainer"]
+[node name="8" type="Label" parent="PlayerHUD/HBoxContainer"]
 layout_mode = 2
 text = "8"
 label_settings = SubResource("LabelSettings_eqxc7")
 
-[node name="9" type="Label" parent="HUD/HBoxContainer"]
+[node name="9" type="Label" parent="PlayerHUD/HBoxContainer"]
 layout_mode = 2
 text = "9"
 label_settings = SubResource("LabelSettings_eqxc7")
 
-[node name="10" type="Label" parent="HUD/HBoxContainer"]
+[node name="10" type="Label" parent="PlayerHUD/HBoxContainer"]
 layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_eqxc7")
 
-[node name="Container" type="Control" parent="HUD"]
+[node name="Container" type="Control" parent="PlayerHUD"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 58.0
 grow_horizontal = 2
 
-[node name="Label" type="Label" parent="HUD/Container"]
+[node name="Label" type="Label" parent="PlayerHUD/Container"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -197,7 +198,7 @@ text = "Pressing Input"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="HUD/Container"]
+[node name="Label2" type="Label" parent="PlayerHUD/Container"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -210,7 +211,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("6_4v1iv")
 
-[node name="Inventory" type="ItemList" parent="HUD"]
+[node name="Inventory" type="ItemList" parent="PlayerHUD"]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -229,5 +230,5 @@ grow_vertical = 2
 script = ExtResource("6_boukr")
 
 [connection signal="timeout" from="LastPositionTimer" to="." method="_on_LastPositionTimer_timeout"]
-[connection signal="area_shape_entered" from="InteractionField" to="." method="_on_interaction_field_area_shape_entered"]
-[connection signal="area_shape_exited" from="InteractionField" to="." method="_on_interaction_field_area_shape_exited"]
+[connection signal="area_shape_entered" from="InteractionField" to="CameraPivot/Horizontal/Vertical/PlayerHand" method="_on_interaction_field_area_shape_entered"]
+[connection signal="area_shape_exited" from="InteractionField" to="CameraPivot/Horizontal/Vertical/PlayerHand" method="_on_interaction_field_area_shape_exited"]

@@ -4,25 +4,12 @@ extends CharacterBody3D
 # Helper class for the Player scene's scripts to be able to have access to the
 # camera and its orientation.
 
-@onready var camera: Camera3D = %Camera3D
-@onready var hud: Control = $HUD
-@onready var hand: Node3D = $CameraPivot/Horizontal/Vertical/Hand
+@onready var camera: Camera3D = %PlayerCam
+@onready var hud: Control = %PlayerHUD
+@onready var hand: Node3D = $CameraPivot/Horizontal/Vertical/PlayerHand
+@onready var skills: Node = $PlayerSkills
 
-var both_hands_busy := false
 
-var items_near:= []
-var closest_holdable: Node3D
-
-func _process(_delta):
-	if Input.is_action_just_pressed('collect'):
-		if items_near.size() > 0:
-			for i in items_near.size():
-				if items_near[i].is_in_group('Collectable'):
-					obtain_item(items_near[i])
-					items_near.remove_at(i)
-		elif closest_holdable:
-			hold_item(closest_holdable, 'above')
-		
 func _ready():
 	GameState.player = self
 	check_everything_is_not_null()
@@ -37,46 +24,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 	else:
 		return []
 
-func hold_item(item: Node3D, item_placement: String = 'right'):
-	hand.hold_item(item, item_placement)
-
 func is_skill_selected(skill):
-	return $PlayerSkills.selected_skill == skill
+	return skills.selected_skill == skill
 
 func select_skill(skill):
-	return $PlayerSkills.set_selected_skill(skill)
-
-func obtain_item(item_node: Node3D):
-	hud.add_item_to_inventory(item_node)
-	print('TO BE IMPLEMENTED - obtaining item: ', item_node.name)
-
-func _on_interaction_field_area_shape_entered(area_rid, area: Area3D, area_shape_index, local_shape_index):
-	if area and area.get_parent():
-		var parent = area.get_parent()
-		print('got near ', parent)
-		print('groups it has: ', parent.get_groups())
-		if parent.is_in_group('Collectables'):
-			if items_near.find(parent) < 1:
-				items_near.append(parent)
-		elif parent.is_in_group('Holdables'):
-				closest_holdable = parent
-				
-	print('items_near: ', items_near)
-	print('closest_holdable: ', closest_holdable)
-	
-	
-
-func _on_interaction_field_area_shape_exited(area_rid, area: Area3D, area_shape_index, local_shape_index):
-	if area and area.get_parent():
-		var parent = area.get_parent()
-		print('got far from ', parent)
-		print('groups it has: ', parent.get_groups())
-		if area.get_parent().is_in_group('Collectables'):
-			var idx = items_near.find(area.get_parent())
-			items_near.remove_at(idx)
-		elif (area.get_parent().is_in_group('Holdables') 
-			and closest_holdable == area.get_parent()):
-				closest_holdable = null
-
-	print('items_near: ', items_near)
-	print('closest_holdable: ', closest_holdable)
+	return skills.set_selected_skill(skill)
