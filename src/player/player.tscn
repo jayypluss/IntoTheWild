@@ -60,6 +60,10 @@ script = ExtResource("3_8yr1s")
 [node name="PlayerHand" type="Node3D" parent="CameraPivot/Horizontal/Vertical"]
 script = ExtResource("4_y05fh")
 
+[node name="Timer" type="Timer" parent="CameraPivot/Horizontal/Vertical/PlayerHand"]
+wait_time = 0.1
+one_shot = true
+
 [node name="PlayerCam" type="Camera3D" parent="CameraPivot/Horizontal/Vertical"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.590641, 0)
@@ -232,3 +236,4 @@ script = ExtResource("6_boukr")
 [connection signal="timeout" from="LastPositionTimer" to="." method="_on_LastPositionTimer_timeout"]
 [connection signal="area_shape_entered" from="InteractionField" to="CameraPivot/Horizontal/Vertical/PlayerHand" method="_on_interaction_field_area_shape_entered"]
 [connection signal="area_shape_exited" from="InteractionField" to="CameraPivot/Horizontal/Vertical/PlayerHand" method="_on_interaction_field_area_shape_exited"]
+[connection signal="timeout" from="CameraPivot/Horizontal/Vertical/PlayerHand/Timer" to="CameraPivot/Horizontal/Vertical/PlayerHand" method="_on_timer_timeout"]

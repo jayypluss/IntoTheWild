@@ -3,13 +3,13 @@ extends Node3D
 
 @onready var player_hud = %PlayerHUD
 
-var is_holding_something:= false
 var both_hands_busy := false
 var items_near:= []
 var closest_holdable: Node3D
+var holding_item: Node3D
+var holding_item_pos: String
 
-
-func _process(_delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed('collect'):
 		if items_near.size() > 0:
 			for item in items_near:
@@ -18,38 +18,38 @@ func _process(_delta):
 		elif closest_holdable:
 			hold_item(closest_holdable, 'above')
 			
-	if (Input.is_action_just_pressed('click') 
-		and get_child_count() > 0 
-		and get_child(0, true).has_method('trigger1')):
-			get_child(0, true).trigger1()
-	if (Input.is_action_just_pressed('right_click') 
-		and get_child_count() > 0 
-		and get_child(0, true).has_method('trigger2')):
-			get_child(0, true).trigger2()
+	if (Input.is_action_just_pressed('click')
+		and get_child_count() > 1
+		and get_child(1, true).has_method('trigger1')):
+			get_child(1, true).trigger1()
+	if (Input.is_action_just_pressed('right_click')
+		and get_child_count() > 1
+		and get_child(1, true).has_method('trigger2')):
+			get_child(1, true).trigger2()
 			
 func hold_item(item: Node3D, item_placement: String = 'right'):
-	print_tree_pretty()
+	holding_item = item
+	holding_item_pos = item_placement
 	
-	item.call_deferred('reparent', self)
+	holding_item.call_deferred('reparent', self)
 	
-	item.remove_from_group('Holdables')
-	if item_placement == 'right':
-		position = Vector3(0.11, 0.513, -0.248)
-	elif item_placement == 'above':
-		position = Vector3(0.7, 1.3, -0.248)
+	$Timer.start()
 
-	is_holding_something = true
-	item.global_transform = global_transform
-	item.rotation_degrees.x = 90
-	
-	if item.is_class('PhysicsBody3D'):
-		item.set_freeze_enabled(true)
+func _on_timer_timeout():	
+	holding_item.remove_from_group('Holdables')
+	if holding_item_pos == 'right':
+		position = Vector3(0.11, 0.513, -0.248)
+	elif holding_item_pos == 'above':
+		position = Vector3(0.7, 1.3, -0.248)
 		
-	if item.find_child('WoodTrunkCollision'):
-		item.find_child('WoodTrunkCollision').call_deferred('set_disabled', true)
+	holding_item.global_transform = global_transform
+	holding_item.rotation_degrees.x = 90
 	
-	print_tree_pretty()
+	if holding_item.is_class('PhysicsBody3D'):
+		holding_item.set_freeze_enabled(true)
 		
+	if holding_item.find_child('WoodTrunkCollision'):
+		holding_item.find_child('WoodTrunkCollision').call_deferred('set_disabled', true)
 
 func obtain_item(item_node: Node3D):
 	var idx = items_near.find(item_node)
