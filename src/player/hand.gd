@@ -19,13 +19,13 @@ func _physics_process(_delta):
 			hold_item(closest_holdable, 'above')
 			
 	if (Input.is_action_just_pressed('click')
-		and get_child_count() > 1
+		and get_child_count() > 0
 		and get_child(0, true).has_method('trigger1')):
 			get_child(0, true).trigger1()
 	if (Input.is_action_just_pressed('right_click')
-		and get_child_count() > 1
+		and get_child_count() > 0
 		and get_child(0, true).has_method('trigger2')):
-			get_child(0, true).trigger2()
+			get_child(0	, true).trigger2()
 			
 func hold_item(item: Node3D, item_placement: String = 'right'):
 	holding_item = item
