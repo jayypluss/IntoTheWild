@@ -1,0 +1,36 @@
+on:
+  push:
+    branches:
+      - disabled
+
+jobs:
+  export_game:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    name: Export Game
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3.0.2
+
+      - name: get tag from version
+        id: tag_version
+        run: |
+          echo "TAG_VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: export game
+        id: export
+        uses: firebelley/godot-export@v4.7.0
+        with:
+          use_godot_4: true
+          godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.0/Godot_v4.0-stable_linux.x86_64.zip
+          godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.0/Godot_v4.0-stable_export_templates.tpz
+          relative_project_path: ./
+          archive_output: true
+
+      - name: create release
+        uses: ncipollo/release-action@v1.12.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          generateReleaseNotes: true
+          tag: v${{ steps.tag_version.outputs.TAG_VERSION }}
+          artifacts: ${{ steps.export.outputs.archive_directory }}/*
