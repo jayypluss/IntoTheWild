@@ -16,7 +16,7 @@ func _physics_process(_delta):
 				if item.is_in_group('Collectables'):
 					obtain_item(item)
 		elif closest_holdable:
-			hold_item(closest_holdable, 'above')
+			call_deferred('hold_item', closest_holdable, 'above')
 			
 	if (Input.is_action_just_pressed('click')
 		and get_child_count() > 0
@@ -31,9 +31,6 @@ func hold_item(item: Node3D, item_placement: String = 'right'):
 	holding_item = item
 	holding_item_pos = item_placement
 	
-	call_deferred("temp", item, item_placement)
-	
-func temp(item, item_placement) -> void:
 	item.reparent(self)
 	item.remove_from_group('Holdables')
 	if item_placement == 'right':
@@ -49,7 +46,7 @@ func temp(item, item_placement) -> void:
 		
 	if item.find_child('WoodTrunkCollision'):
 		item.find_child('WoodTrunkCollision').call_deferred('set_disabled', true)
-  
+
 
 func obtain_item(item_node: Node3D):
 	var idx = items_near.find(item_node)
