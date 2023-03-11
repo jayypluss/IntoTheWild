@@ -9,15 +9,15 @@ var selected_skill := 'chopping_magic'
 var is_casting_magic := false
 
 func _process(_delta):
-	if Input.is_action_just_pressed('click') and !hand.both_hands_busy:
+	if (Input.is_action_pressed('click') 
+		and !hand.holding_item 
+		and selected_skill):
 		is_casting_magic = true
-		if particles_emitter:
-			particles_emitter.emitting = true
-	
-	if Input.is_action_just_released('click'):
+	else:
 		is_casting_magic = false
-		if particles_emitter:
-			particles_emitter.emitting = false
+				
+	if particles_emitter:
+		particles_emitter.emitting = is_casting_magic
 	
 
 func set_selected_skill(skill_id: String):

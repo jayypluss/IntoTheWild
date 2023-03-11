@@ -3,7 +3,6 @@ extends Node3D
 
 @onready var player_hud = %PlayerHUD
 
-var both_hands_busy := false
 var items_near:= []
 var closest_holdable: Node3D
 var holding_item: Node3D
