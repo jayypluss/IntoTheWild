@@ -14,7 +14,7 @@ func _physics_process(_delta):
 			for item in items_near:
 				if item.is_in_group('Collectables'):
 					obtain_item(item)
-		elif closest_holdable:
+		elif closest_holdable and !holding_item:
 			call_deferred('hold_item', closest_holdable, 'above')
 			
 	if (Input.is_action_just_pressed('click')

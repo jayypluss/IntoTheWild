@@ -13,9 +13,9 @@ func trigger1() -> bool:
 	return true
 	
 func _on_wood_interaction_area_area_shape_entered(_area_rid, area, _area_shape_index, _local_shape_index):
-	if area.is_in_group('PlayerInteractionFields'):
+	if area and area.is_in_group('PlayerInteractionFields'):
 		is_player_near = true
 
 func _on_wood_interaction_area_area_shape_exited(_area_rid, area, _area_shape_index, _local_shape_index):
-	if area.is_in_group('PlayerInteractionFields'):
+	if area and area.is_in_group('PlayerInteractionFields'):
 		is_player_near = false

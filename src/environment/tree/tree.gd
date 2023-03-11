@@ -34,8 +34,10 @@ func get_progress_bar():
 	return progress_bar
 
 func break_tree():
+	bush.freeze = false
 	bush.apply_impulse(Vector3(0, 0, 5))
 	wood_trunk.add_to_group('Holdables')
+	wood_trunk.freeze = false
 	wood_trunk.apply_impulse(Vector3(0, 0, -5))
 	wood_trunk.reparent(get_tree().current_scene)
 	is_broken = true
@@ -43,7 +45,7 @@ func break_tree():
 	timer.start()
 		
 func _on_wood_interaction_area_area_shape_exited(_area_rid, area, _area_shape_index, _local_shape_index):
-	if area.is_in_group('PlayerInteractionFields'):
+	if area and area.is_in_group('PlayerInteractionFields'):
 		if !is_broken:
 			progress_bar.visible = false
 

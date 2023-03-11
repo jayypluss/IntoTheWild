@@ -63,6 +63,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.67787, 0)
 collision_layer = 2
 collision_mask = 3
 sleeping = true
+freeze = true
 
 [node name="Mesh" type="CSGSphere3D" parent="Bush"]
 radius = 2.0
@@ -76,6 +77,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.40095, 0)
 collision_layer = 2
 collision_mask = 3
 sleeping = true
+freeze = true
 script = ExtResource("2_p1qev")
 
 [node name="Mesh" type="CSGCylinder3D" parent="WoodTrunk"]
