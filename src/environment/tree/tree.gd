@@ -12,8 +12,8 @@ var is_broken := false
 
 
 func _physics_process(_delta: float) -> void:
-	if (wood_trunk and wood_trunk.is_player_near 
-		and !is_broken 
+	if (wood_trunk and wood_trunk.is_player_near
+		and !is_broken
 		and GameState.player.is_skill_selected('chopping_magic')):
 			if Input.is_action_pressed('click'):
 				progress_bar.visible = true
@@ -42,19 +42,21 @@ func break_tree():
 	progress_bar.visible = false
 	timer.start()
 		
-func _on_wood_interaction_area_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
+func _on_wood_interaction_area_area_shape_exited(_area_rid, area, _area_shape_index, _local_shape_index):
 	if area.is_in_group('PlayerInteractionFields'):
 		if !is_broken:
 			progress_bar.visible = false
 
-	
+
 func _on_timer_timeout():
 	var items_data = { 'Leaf': { 'quantity': randi_range(2, 3) } }
 	for item_datum in items_data.keys():
 		for idx in range(items_data[item_datum].quantity):
 			var item_instance = preload('res://src/items/item.tscn').instantiate()
 			item_instance.title = item_datum
-			item_instance.mesh = preload('res://src/items/meshes/leaf_mesh.tres')
+			var path = 'res://src/items/meshes/' + item_datum + '.tres'
+			item_instance.variable_mesh = load(path)
+			print('item_instance.variable_mesh: ', item_instance.variable_mesh)
 			get_tree().current_scene.add_child(item_instance)
 			item_instance.global_position = bush.global_position
 	bush.queue_free()

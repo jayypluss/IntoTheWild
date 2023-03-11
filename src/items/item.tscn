@@ -9,7 +9,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VariableMesh:rotation")
+tracks/0/path = NodePath("VariableMeshNode:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -54,7 +54,7 @@ libraries = {
 mesh = SubResource("SphereMesh_iqg6e")
 material = SubResource("StandardMaterial3D_v3byp")
 
-[node name="VariableMesh" type="CSGMesh3D" parent="."]
+[node name="VariableMeshNode" type="CSGMesh3D" parent="."]
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_kkxb2")

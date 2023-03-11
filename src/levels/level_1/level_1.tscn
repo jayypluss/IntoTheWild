@@ -50,7 +50,7 @@ sky = SubResource("Sky_hk16n")
 [node name="Level1" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_qtwv6")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.260125, 17.1757, -11.1809)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10.5957, 4.69254, -11.1809)
 
 [node name="Land" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0183468, 0)
@@ -61,7 +61,7 @@ mesh = SubResource("CylinderMesh_e14nr")
 material = SubResource("StandardMaterial3D_qlgsp")
 
 [node name="Sea" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, -34.9345)
 use_collision = true
 collision_layer = 2
 collision_mask = 5
@@ -81,4 +81,10 @@ light_indirect_energy = 5.0
 light_angular_distance = 4.55
 
 [node name="Tree" parent="." instance=ExtResource("2_07qb1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20206, -27.6205)
+
+[node name="Tree2" parent="." instance=ExtResource("2_07qb1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20206, 0)
+
+[node name="Tree3" parent="." instance=ExtResource("2_07qb1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5236, 1.20206, 0)

@@ -72,9 +72,10 @@ func _on_interaction_field_area_shape_entered(_area_rid, area: Area3D, _area_sha
 func _on_interaction_field_area_shape_exited(_area_rid, area: Area3D, _area_shape_index, _local_shape_index):
 	if area and area.get_parent():
 		var parent = area.get_parent()
-		if area.get_parent().is_in_group('Collectables'):
-			var idx = items_near.find(area.get_parent())
-			items_near.remove_at(idx)
-		elif (area.get_parent().is_in_group('Holdables') 
-			and closest_holdable == area.get_parent()):
+		if parent.is_in_group('Collectables'):
+			var idx = items_near.find(parent)
+			if idx >= 0:
+				items_near.remove_at(idx)
+		elif (parent.is_in_group('Holdables') 
+			and closest_holdable == parent):
 				closest_holdable = null
