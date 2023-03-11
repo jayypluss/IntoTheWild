@@ -1,8 +1,8 @@
 extends Node
 
-@export var walk_speed := 5.0
-@export var run_speed := 8.0
-@export var jump_impulse := 10.0
+@export var walk_speed := 8.0
+@export var run_speed := 13.0
+@export var jump_impulse := 14.0
 @export var fall_acceleration := 50.0
 
 @onready var player: Player
