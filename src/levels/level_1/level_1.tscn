@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://crux4d2qhr8v8"]
+[gd_scene load_steps=16 format=3 uid="uid://crux4d2qhr8v8"]
 
 [ext_resource type="Script" path="res://src/levels/level_1/level_1.gd" id="1_pn17q"]
 [ext_resource type="PackedScene" uid="uid://c8aem4qjchnrf" path="res://src/player/player.tscn" id="1_qtwv6"]
+[ext_resource type="Script" path="res://src/environment/water/water.gd" id="3_28qfp"]
+[ext_resource type="Shader" path="res://src/environment/water/water.gdshader" id="3_hff7e"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_e14nr"]
 top_radius = 100.0
@@ -30,9 +32,6 @@ albedo_texture = SubResource("NoiseTexture2D_bh315")
 grow_amount = -4.042
 proximity_fade_distance = 21.31
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ti8j"]
-albedo_color = Color(0, 0.454902, 1, 1)
-
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lfny6"]
 sky_top_color = Color(0.384314, 0.756863, 1, 1)
 sky_horizon_color = Color(0, 1, 0.709804, 1)
@@ -46,6 +45,24 @@ sky_material = SubResource("ProceduralSkyMaterial_lfny6")
 background_mode = 2
 background_energy_multiplier = 1.32
 sky = SubResource("Sky_hk16n")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sxpe1"]
+size = Vector2(1000, 1000)
+subdivide_width = 256
+subdivide_depth = 256
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a23py"]
+render_priority = 0
+shader = ExtResource("3_hff7e")
+shader_parameter/out_color = Color(0, 0.2, 1, 1)
+shader_parameter/amount = 0.8
+shader_parameter/speed = 1.0
+shader_parameter/beer_factor = 0.2
+shader_parameter/metallic = 0.6
+shader_parameter/specular = 0.5
+shader_parameter/roughness = 0.2
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_uqvqj"]
 
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_pn17q")
@@ -61,16 +78,6 @@ collision_mask = 7
 mesh = SubResource("CylinderMesh_e14nr")
 material = SubResource("StandardMaterial3D_qlgsp")
 
-[node name="Sea" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, -34.9345)
-use_collision = true
-collision_layer = 2
-collision_mask = 5
-radius = 1500.0
-height = 200.0
-sides = 64
-material = SubResource("StandardMaterial3D_4ti8j")
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_x5gw1")
 
@@ -80,3 +87,20 @@ light_color = Color(1, 0.760784, 0, 1)
 light_energy = 1.5
 light_indirect_energy = 5.0
 light_angular_distance = 4.55
+
+[node name="Water" type="Node3D" parent="."]
+script = ExtResource("3_28qfp")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Water"]
+mesh = SubResource("PlaneMesh_sxpe1")
+material = SubResource("ShaderMaterial_a23py")
+
+[node name="Area3D" type="Area3D" parent="Water"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Water/Area3D"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_uqvqj")
+
+[connection signal="body_entered" from="Water/Area3D" to="Water" method="_on_area_3d_body_entered"]
