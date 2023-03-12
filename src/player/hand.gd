@@ -20,7 +20,12 @@ func _physics_process(_delta):
 	if (Input.is_action_just_pressed('click')
 		and get_child_count() > 0
 		and get_child(0, true).has_method('trigger1')):
-			var throw = get_child(0, true).trigger1()
+			
+			# Rotate direction based checked camera.
+			var horizontal_rotation = %CameraPivot/Horizontal.global_transform.basis.get_euler().y
+			var direction = Vector3(0,0,-1).rotated(Vector3.UP, horizontal_rotation).normalized()
+			
+			var throw = get_child(0, true).trigger1(direction)
 			if throw:
 				holding_item = null
 				holding_item_pos = ''
