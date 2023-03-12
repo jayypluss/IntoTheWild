@@ -37,7 +37,7 @@ grow_amount = -4.042
 proximity_fade_distance = 21.31
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bfamy"]
-radius = 2.0
+radius = 1.7
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_hpc1s"]
 height = 3.0
