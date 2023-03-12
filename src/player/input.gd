@@ -6,6 +6,7 @@ extends Node
 @export var fall_acceleration := 50.0
 
 @onready var player: Player
+@onready var player_hud: Player
 
 var paused := false
 var is_jumping := false
@@ -69,3 +70,9 @@ func _physics_process(delta: float) -> void:
 	player.set_up_direction(Vector3.UP)
 	player.move_and_slide()
 	player.velocity = player.velocity
+	
+	if Input.is_action_just_pressed('toggle_blueprint_mode'):
+		player.toggle_blueprint_mode()
+		
+	if Input.is_action_just_pressed('close'):
+		player.hud.close_all()

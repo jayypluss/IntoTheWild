@@ -1,6 +1,7 @@
 extends Control
 
 @onready var inventory: ItemList = $Inventory
+@onready var blueprints: ItemList = $BlueprintsList
 var items: Dictionary = {  }
 
 
@@ -16,3 +17,15 @@ func add_item_to_inventory(item_node: Node3D):
 		var idx = inventory.add_item((item_node.title + '  x1'))
 		items.merge( { item_node.title: { 'quantity': 1, 'index': idx } }, false)
 	item_node.queue_free()
+
+func close_all():
+	inventory.visible = false
+	blueprints.visible = false
+
+func toggle_blueprint_mode():
+	blueprints.visible = !blueprints.visible
+	if blueprints.visible:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	return blueprints.visible

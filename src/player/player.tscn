@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://src/player/input.gd" id="2_6ltf4"]
 [ext_resource type="Script" path="res://src/player/camera.gd" id="3_8yr1s"]
 [ext_resource type="Script" path="res://src/player/hand.gd" id="4_y05fh"]
-[ext_resource type="Script" path="res://src/player/item_list.gd" id="5_6knwf"]
 [ext_resource type="Script" path="res://src/player/hud.gd" id="5_d1wna"]
 [ext_resource type="Script" path="res://src/player/pressed_input.gd" id="6_4v1iv"]
 [ext_resource type="Script" path="res://src/player/player_skills.gd" id="6_boukr"]
@@ -24,6 +23,31 @@ material = SubResource("StandardMaterial3D_b3roc")
 top_radius = 0.2
 bottom_radius = 0.2
 height = 0.01
+
+[sub_resource type="GDScript" id="GDScript_hci73"]
+script/source = "extends ItemList
+
+var shortcuts_allocation := ['chopping_magic', '', '', '', '', '', '', '', '', '']
+
+func _ready():
+	for i in shortcuts_allocation.size():
+		set_item_text(i, shortcuts_allocation[i])
+
+	select_item(0)
+
+func _process(_delta):
+	if Input.is_action_just_pressed('0'):
+		select_item(9)
+	for i in range(1, 10):
+		if Input.is_action_just_pressed(str(i)):
+			select_item(i-1)
+
+func select_item(idx: int):
+	select(idx)
+	if GameState.player:
+		GameState.player.select_skill(shortcuts_allocation[idx])
+
+"
 
 [sub_resource type="LabelSettings" id="LabelSettings_eqxc7"]
 line_spacing = 1.0
@@ -114,7 +138,7 @@ item_6/text = "7"
 item_7/text = "8"
 item_8/text = "9"
 item_9/text = "0"
-script = ExtResource("5_6knwf")
+script = SubResource("GDScript_hci73")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PlayerHUD"]
 layout_mode = 1
@@ -228,9 +252,27 @@ offset_bottom = -0.223999
 grow_horizontal = 0
 grow_vertical = 2
 
+[node name="BlueprintsList" type="ItemList" parent="PlayerHUD"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.178
+anchor_top = 0.231
+anchor_right = 0.635
+anchor_bottom = 0.722
+offset_left = -0.0559998
+offset_top = 0.311996
+offset_right = -0.520081
+offset_bottom = 0.143951
+grow_horizontal = 0
+grow_vertical = 2
+item_count = 1
+item_0/text = "Bed"
+
 [node name="PlayerSkills" type="Node" parent="."]
 script = ExtResource("6_boukr")
 
 [connection signal="timeout" from="LastPositionTimer" to="." method="_on_last_position_timer_timeout"]
 [connection signal="area_shape_entered" from="InteractionField" to="CameraPivot/Horizontal/Vertical/PlayerHand" method="_on_interaction_field_area_shape_entered"]
 [connection signal="area_shape_exited" from="InteractionField" to="CameraPivot/Horizontal/Vertical/PlayerHand" method="_on_interaction_field_area_shape_exited"]
+[connection signal="item_selected" from="PlayerHUD/BlueprintsList" to="." method="_on_blueprints_list_item_selected"]

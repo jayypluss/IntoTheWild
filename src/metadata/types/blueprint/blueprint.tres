@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://tf53g66g88oe"]
+
+[ext_resource type="Script" path="res://src/metadata/types/blueprint/blueprint.gd" id="1_erdgi"]
+
+[resource]
+script = ExtResource("1_erdgi")
