@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://crux4d2qhr8v8"]
 
+[ext_resource type="Script" path="res://src/levels/level_1/level_1.gd" id="1_pn17q"]
 [ext_resource type="PackedScene" uid="uid://c8aem4qjchnrf" path="res://src/player/player.tscn" id="1_qtwv6"]
-[ext_resource type="PackedScene" uid="uid://c2pmpc3weqso2" path="res://src/environment/tree/tree.tscn" id="2_07qb1"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_e14nr"]
 top_radius = 100.0
@@ -48,6 +48,7 @@ background_energy_multiplier = 1.32
 sky = SubResource("Sky_hk16n")
 
 [node name="Level1" type="Node3D"]
+script = ExtResource("1_pn17q")
 
 [node name="Player" parent="." instance=ExtResource("1_qtwv6")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10.5957, 4.69254, -11.1809)
@@ -79,12 +80,3 @@ light_color = Color(1, 0.760784, 0, 1)
 light_energy = 1.5
 light_indirect_energy = 5.0
 light_angular_distance = 4.55
-
-[node name="Tree" parent="." instance=ExtResource("2_07qb1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20206, -27.6205)
-
-[node name="Tree2" parent="." instance=ExtResource("2_07qb1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20206, 0)
-
-[node name="Tree3" parent="." instance=ExtResource("2_07qb1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5236, 1.20206, 0)
