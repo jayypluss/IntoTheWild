@@ -7,4 +7,4 @@ func _ready():
 	for i in range(0, 30):
 		var instance = tree_node.instantiate()
 		get_tree().current_scene.add_child(instance)
-		instance.global_position = Vector3(randf_range(-80, 80), 0, randf_range(-80, 80))
+		instance.global_position = Vector3(randf_range(-80, 80), 1, randf_range(-80, 80))
