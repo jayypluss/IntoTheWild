@@ -14,7 +14,6 @@ var is_player_near := false
 
 func _init(tmp_variable_mesh: Mesh = null):
 	if variable_mesh_node and (variable_mesh or tmp_variable_mesh):
-		print('entered init if')
 		variable_mesh_node.mesh = variable_mesh if variable_mesh else tmp_variable_mesh
 
 func _ready():

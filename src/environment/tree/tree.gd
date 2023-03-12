@@ -58,7 +58,6 @@ func _on_timer_timeout():
 			item_instance.title = item_datum
 			var path = 'res://src/items/meshes/' + item_datum + '.tres'
 			item_instance.variable_mesh = load(path)
-			print('item_instance.variable_mesh: ', item_instance.variable_mesh)
 			get_tree().current_scene.add_child(item_instance)
 			item_instance.global_position = bush.global_position
 	bush.queue_free()
