@@ -16,7 +16,30 @@ var has_jumped_sprinting := false
 func _ready():
 	player = self.owner
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed('click'):
+		if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if event.is_action_pressed('toggle_mouse_captured'):
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			paused = true
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		get_viewport().set_input_as_handled()
+		
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed('toggle_blueprint_mode'):
+		player.toggle_blueprint_mode()
+		
+	if Input.is_action_just_pressed('close'):
+		player.hud.close_all()
+		
+	if player.blueprint_mode and Input.is_action_just_pressed('enter'):
+		var all_selected = player.hud.blueprints.get_selected_items()
+		player.hud.close_all()
+		player.hold_blueprint(all_selected[0])
+		
 	if paused: # Used to prevent movement during a cutscene.
 		return
 	
@@ -70,14 +93,3 @@ func _physics_process(delta: float) -> void:
 	player.set_up_direction(Vector3.UP)
 	player.move_and_slide()
 	player.velocity = player.velocity
-	
-	if Input.is_action_just_pressed('toggle_blueprint_mode'):
-		player.toggle_blueprint_mode()
-		
-	if Input.is_action_just_pressed('close'):
-		player.hud.close_all()
-		
-	if Input.is_action_just_pressed('enter') and player.blueprint_mode:
-		var all_selected = player.hud.blueprints.get_selected_items()
-		player.hud.close_all()
-		player.hold_blueprint(all_selected[0])
