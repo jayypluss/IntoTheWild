@@ -1,6 +1,6 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dyaa64mbfrd08"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
 
-[ext_resource type="Shader" path="res://src/environment/blueprint/blueprint.gdshader" id="1_7vjuj"]
+[ext_resource type="Shader" path="res://assets/shaders/blueprint.gdshader" id="1_7vjuj"]
 
 [resource]
 render_priority = 0

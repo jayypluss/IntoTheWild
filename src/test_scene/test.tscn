@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3i7ouv8w1qye"]
+[gd_scene load_steps=8 format=3 uid="uid://dy8yefqdq0y65"]
 
-[ext_resource type="Shader" path="res://test.gdshader" id="1_xesi2"]
+[ext_resource type="Shader" path="res://src/test_scene/test.gdshader" id="1_8qmpa"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_uabgx"]
 
@@ -15,7 +15,7 @@ noise = SubResource("FastNoiseLite_ltk5e")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gnwfg"]
 render_priority = 0
-shader = ExtResource("1_xesi2")
+shader = ExtResource("1_8qmpa")
 shader_parameter/height_scale = 0.5
 shader_parameter/noise = SubResource("NoiseTexture2D_sxmbi")
 shader_parameter/normalmap = SubResource("NoiseTexture2D_ygbjv")

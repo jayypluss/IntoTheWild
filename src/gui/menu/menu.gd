@@ -5,15 +5,15 @@ extends Control
 @onready var start_button := $ButtonsContainer/StartButton
 @onready var credits_button := $ButtonsContainer/CreditsButton
 @onready var exit_button := $ButtonsContainer/ExitButton
-@onready var game_version_label := $Version/GameVersion
+@onready var GameState_version_label := $Version/GameStateVersion
 @onready var godot_version_label := $Version/GodotVersion
 
 
 func _ready():
-	game_version_label.text = "0.1-alpha"
-#	game_version_label.text = ProjectSettings.get_setting("application/config/version")
+	GameState_version_label.text = "0.1-alpha"
+#	GameState_version_label.text = ProjectSettings.get_setting("application/config/version")
 	godot_version_label.text = "Godot %s" % Engine.get_version_info().string
-	# needed for gamepads to work
+	# needed for GameStatepads to work
 	start_button.grab_focus()
 	if OS.has_feature('HTML5'):
 		exit_button.queue_free()

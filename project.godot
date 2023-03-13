@@ -18,9 +18,9 @@ config/main_scene=""
 
 [autoload]
 
-GameState="*res://src/game/state/game/game_state.gd"
-ConfigsState="*res://src/game/state/configs/configs_state.gd"
-Game="*res://src/game/game.gd"
+Game="*res://src/game/game/game.gd"
+Configurations="*res://src/game/configs/configurations.gd"
+GlobalTools="*res://src/game/global_tools/global_tools.gd"
 Metadata="*res://src/metadata/metadata.gd"
 
 [input]

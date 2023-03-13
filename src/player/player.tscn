@@ -1,13 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8aem4qjchnrf"]
+[gd_scene load_steps=16 format=3]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1"]
-[ext_resource type="Script" path="res://src/player/input.gd" id="2_6ltf4"]
-[ext_resource type="Script" path="res://src/player/camera.gd" id="3_8yr1s"]
-[ext_resource type="Script" path="res://src/player/hand.gd" id="4_y05fh"]
-[ext_resource type="Script" path="res://src/player/blueprint_placement.gd" id="5_1pxnq"]
-[ext_resource type="Script" path="res://src/player/hud.gd" id="5_d1wna"]
-[ext_resource type="Script" path="res://src/player/pressed_input.gd" id="6_4v1iv"]
-[ext_resource type="Script" path="res://src/player/player_skills.gd" id="6_boukr"]
+[ext_resource type="Script" path="res://src/player/input/input.gd" id="2_6ltf4"]
+[ext_resource type="Script" path="res://src/player/camera/camera.gd" id="3_8yr1s"]
+[ext_resource type="Script" path="res://src/player/camera/hand.gd" id="4_y05fh"]
+[ext_resource type="Script" path="res://src/player/camera/blueprint_placement.gd" id="5_1pxnq"]
+[ext_resource type="Script" path="res://src/player/hud/hud.gd" id="5_d1wna"]
+[ext_resource type="Script" path="res://src/player/hud/pressed_input.gd" id="6_4v1iv"]
+[ext_resource type="Script" path="res://src/player/skills/player_skills.gd" id="6_boukr"]
 
 [sub_resource type="CapsuleShape3D" id="5"]
 
