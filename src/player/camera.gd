@@ -43,4 +43,3 @@ func _physics_process(delta: float) -> void:
 	# Move camera smoothly based checked "delta * acceleration".
 	$Horizontal.rotation_degrees.y = lerp($Horizontal.rotation_degrees.y, horizontal, delta * h_acceleration)
 	$Horizontal/Vertical.rotation_degrees.x = lerp($Horizontal/Vertical.rotation_degrees.x, vertical, delta * v_acceleration)
-	

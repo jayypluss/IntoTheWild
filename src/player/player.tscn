@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://c8aem4qjchnrf"]
+[gd_scene load_steps=16 format=3 uid="uid://c8aem4qjchnrf"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1"]
 [ext_resource type="Script" path="res://src/player/input.gd" id="2_6ltf4"]
 [ext_resource type="Script" path="res://src/player/camera.gd" id="3_8yr1s"]
 [ext_resource type="Script" path="res://src/player/hand.gd" id="4_y05fh"]
+[ext_resource type="Script" path="res://src/player/blueprint_placement.gd" id="5_1pxnq"]
 [ext_resource type="Script" path="res://src/player/hud.gd" id="5_d1wna"]
 [ext_resource type="Script" path="res://src/player/pressed_input.gd" id="6_4v1iv"]
 [ext_resource type="Script" path="res://src/player/player_skills.gd" id="6_boukr"]
@@ -98,6 +99,12 @@ speed_scale = 3.59
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_tfpew")
 draw_pass_1 = SubResource("CylinderMesh_dce40")
+
+[node name="BlueprintPlacement" type="RayCast3D" parent="CameraPivot/Horizontal/Vertical"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02418e-07, 1.54423, -1.17153)
+target_position = Vector3(0, -2, -5)
+collision_mask = 2
+script = ExtResource("5_1pxnq")
 
 [node name="PlayerHUD" type="Control" parent="."]
 unique_name_in_owner = true

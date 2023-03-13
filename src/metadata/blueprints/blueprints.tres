@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Blueprints" load_steps=5 format=3 uid="uid://ldjuhsj6lgm3"]
+
+[ext_resource type="PackedScene" uid="uid://s4olgswjv7ui" path="res://src/blueprints/bed/Bed.tscn" id="1_53hdn"]
+[ext_resource type="Script" path="res://src/metadata/blueprints/blueprints.gd" id="1_cc2x1"]
+[ext_resource type="Script" path="res://src/metadata/types/blueprint/blueprint.gd" id="1_w2upa"]
+
+[sub_resource type="Resource" id="Resource_w3e3q"]
+script = ExtResource("1_w2upa")
+category = "Home"
+mesh = ExtResource("1_53hdn")
+recipe = Array[String](["wood_trunk", "wood_trunk", "wood_trunk"])
+
+[resource]
+script = ExtResource("1_cc2x1")
+bed = SubResource("Resource_w3e3q")

@@ -64,6 +64,7 @@ func _on_blueprints_list_item_selected(index: int):
 	blueprint_mode = hud.toggle_blueprint_mode()
 
 func hold_blueprint(index: int):
-	var blueprint_title = %PlayerHUD/BlueprintsList.get_item_text(index)
-	print(Metadata.items)
+	var blueprint_title = %PlayerHUD/BlueprintsList.get_item_text(index).to_camel_case()
+	var blueprint_res = Metadata.blueprints[blueprint_title]
+	print(blueprint_res)
 	print('holding blueprint: ', blueprint_title)

@@ -1,6 +1,9 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://tf53g66g88oe"]
+[gd_resource type="Resource" script_class="Blueprint" load_steps=2 format=3 uid="uid://tf53g66g88oe"]
 
 [ext_resource type="Script" path="res://src/metadata/types/blueprint/blueprint.gd" id="1_erdgi"]
 
 [resource]
 script = ExtResource("1_erdgi")
+category = ""
+recipe = Array[Resource("res://src/metadata/types/item/item.gd")]([])
+metadata/_editor_prop_ptr_mesh = null

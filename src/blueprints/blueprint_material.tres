@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dyaa64mbfrd08"]
+
+[ext_resource type="Shader" path="res://src/environment/blueprint/blueprint.gdshader" id="1_7vjuj"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_7vjuj")
+shader_parameter/shift = Vector3(0, 0, 0)
+shader_parameter/time_shift_scale = Vector3(0.05, 0.05, 0)
+shader_parameter/scan_color = Color(0, 1, 0.3, 1)
+shader_parameter/scan_line_width = 0.1
+shader_parameter/scan_line_size = 0.2

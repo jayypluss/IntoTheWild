@@ -1,10 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://crux4d2qhr8v8"]
+[gd_scene load_steps=16 format=3 uid="uid://crux4d2qhr8v8"]
 
 [ext_resource type="Script" path="res://src/levels/level_1/level_1.gd" id="1_pn17q"]
 [ext_resource type="PackedScene" uid="uid://c8aem4qjchnrf" path="res://src/player/player.tscn" id="1_qtwv6"]
 [ext_resource type="Script" path="res://src/environment/water/water.gd" id="3_28qfp"]
 [ext_resource type="Shader" path="res://src/environment/water/water.gdshader" id="3_hff7e"]
-[ext_resource type="Shader" path="res://src/environment/blueprint/blueprint.gdshader" id="5_vrthj"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_e14nr"]
 top_radius = 100.0
@@ -65,18 +64,6 @@ shader_parameter/roughness = 0.2
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_uqvqj"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_ud4f6"]
-height = 4.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h58ca"]
-render_priority = 0
-shader = ExtResource("5_vrthj")
-shader_parameter/shift = Vector3(0, 0, 0)
-shader_parameter/time_shift_scale = Vector3(0.05, 0.05, 0)
-shader_parameter/scan_color = Color(0, 1, 0.3, 1)
-shader_parameter/scan_line_width = 0.1
-shader_parameter/scan_line_size = 0.2
-
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_pn17q")
 
@@ -115,12 +102,5 @@ collision_layer = 8
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Water/Area3D"]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_uqvqj")
-
-[node name="Blueprint" type="Node3D" parent="."]
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Blueprint"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0796, 3.2914, 0)
-mesh = SubResource("CylinderMesh_ud4f6")
-material = SubResource("ShaderMaterial_h58ca")
 
 [connection signal="body_entered" from="Water/Area3D" to="Water" method="_on_area_3d_body_entered"]
