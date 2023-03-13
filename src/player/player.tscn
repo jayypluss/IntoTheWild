@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=16 format=3 uid="uid://cljsx2xktg5r8"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1"]
 [ext_resource type="Script" path="res://src/player/input/input.gd" id="2_6ltf4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://src/player/hud/hud.gd" id="5_d1wna"]
 [ext_resource type="Script" path="res://src/player/hud/pressed_input.gd" id="6_4v1iv"]
 [ext_resource type="Script" path="res://src/player/skills/player_skills.gd" id="6_boukr"]
+[ext_resource type="Script" path="res://src/player/hud/item_list.gd" id="7_dhfqa"]
 
 [sub_resource type="CapsuleShape3D" id="5"]
 
@@ -24,31 +25,6 @@ material = SubResource("StandardMaterial3D_b3roc")
 top_radius = 0.2
 bottom_radius = 0.2
 height = 0.01
-
-[sub_resource type="GDScript" id="GDScript_hci73"]
-script/source = "extends ItemList
-
-var shortcuts_allocation := ['chopping_magic', '', '', '', '', '', '', '', '', '']
-
-func _ready():
-	for i in shortcuts_allocation.size():
-		set_item_text(i, shortcuts_allocation[i])
-
-	select_item(0)
-
-func _process(_delta):
-	if Input.is_action_just_pressed('0'):
-		select_item(9)
-	for i in range(1, 10):
-		if Input.is_action_just_pressed(str(i)):
-			select_item(i-1)
-
-func select_item(idx: int):
-	select(idx)
-	if GameState.player:
-		GameState.player.select_skill(shortcuts_allocation[idx])
-
-"
 
 [sub_resource type="LabelSettings" id="LabelSettings_eqxc7"]
 line_spacing = 1.0
@@ -145,7 +121,7 @@ item_6/text = "7"
 item_7/text = "8"
 item_8/text = "9"
 item_9/text = "0"
-script = SubResource("GDScript_hci73")
+script = ExtResource("7_dhfqa")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PlayerHUD"]
 layout_mode = 1

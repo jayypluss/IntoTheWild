@@ -1,36 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://crux4d2qhr8v8"]
+[gd_scene load_steps=13 format=3 uid="uid://5uwsaqjvcny4"]
 
 [ext_resource type="Script" path="res://src/levels/level_1/level_1.gd" id="1_pn17q"]
-[ext_resource type="PackedScene" uid="uid://c8aem4qjchnrf" path="res://src/player/player.tscn" id="1_qtwv6"]
+[ext_resource type="PackedScene" uid="uid://cljsx2xktg5r8" path="res://src/player/player.tscn" id="1_qtwv6"]
 [ext_resource type="Script" path="res://src/environment/water/water.gd" id="3_28qfp"]
-[ext_resource type="Shader" path="res://src/environment/water/water.gdshader" id="3_hff7e"]
+[ext_resource type="Shader" path="res://assets/shaders/water.gdshader" id="3_hff7e"]
+[ext_resource type="Material" uid="uid://cxtppegqahg6u" path="res://assets/materials/grass.tres" id="3_lhyhw"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_e14nr"]
 top_radius = 100.0
 height = 0.2
 cap_bottom = false
-
-[sub_resource type="Gradient" id="Gradient_v8v8g"]
-offsets = PackedFloat32Array(0.2, 1)
-colors = PackedColorArray(0.689626, 1, 0.696068, 1, 0, 0.440336, 0, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_sph5o"]
-seed = 5
-frequency = 0.07
-fractal_gain = 1.0
-domain_warp_enabled = true
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bh315"]
-seamless = true
-seamless_blend_skirt = 1.0
-color_ramp = SubResource("Gradient_v8v8g")
-noise = SubResource("FastNoiseLite_sph5o")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qlgsp"]
-albedo_color = Color(0, 0.560784, 0, 1)
-albedo_texture = SubResource("NoiseTexture2D_bh315")
-grow_amount = -4.042
-proximity_fade_distance = 21.31
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lfny6"]
 sky_top_color = Color(0.384314, 0.756863, 1, 1)
@@ -76,7 +55,7 @@ use_collision = true
 collision_layer = 2
 collision_mask = 7
 mesh = SubResource("CylinderMesh_e14nr")
-material = SubResource("StandardMaterial3D_qlgsp")
+material = ExtResource("3_lhyhw")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_x5gw1")

@@ -14,7 +14,7 @@ var is_broken := false
 func _physics_process(_delta: float) -> void:
 	if (wood_trunk and wood_trunk.is_player_near
 		and !is_broken
-		and GameState.player.is_skill_selected('chopping_magic')):
+		and Game.player.is_skill_selected('chopping_magic')):
 			if Input.is_action_pressed('click'):
 				progress_bar.visible = true
 				increment_value()
@@ -54,9 +54,9 @@ func _on_timer_timeout():
 	var items_data = { 'Leaf': { 'quantity': randi_range(2, 3) } }
 	for item_datum in items_data.keys():
 		for idx in range(items_data[item_datum].quantity):
-			var item_instance = preload('res://src/items/item.tscn').instantiate()
+			var item_instance = preload('res://src/item/item.tscn').instantiate()
 			item_instance.title = item_datum
-			var path = 'res://src/items/meshes/' + item_datum + '.tres'
+			var path = 'res://assets/3d_meshes/items/' + item_datum.to_lower() + '.tres'
 			item_instance.variable_mesh = load(path)
 			get_tree().current_scene.add_child(item_instance)
 			item_instance.global_position = bush.global_position

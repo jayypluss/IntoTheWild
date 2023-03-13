@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3rmdc1xwiqqx"]
+[gd_scene load_steps=9 format=3]
 
-[ext_resource type="Script" path="res://src/items/item.gd" id="1_tj6go"]
+[ext_resource type="Script" path="res://src/item/item.gd" id="1_tj6go"]
 
 [sub_resource type="Animation" id="Animation_3hr6m"]
 resource_name = "mesh_rotation"

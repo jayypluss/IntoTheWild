@@ -17,23 +17,23 @@ func get_next_level(_last_level: String):
 	return "res://src/levels/level_2/level_2.tscn"
 
 func persist():
-	var save_GameState = FileAccess.open("user://saveGameState.save", FileAccess.WRITE)
-	save_GameState.store_line(JSON.stringify(colorful_stars_collected))
-	save_GameState.close()
+	var save_Game = FileAccess.open("user://saveGame.save", FileAccess.WRITE)
+	save_Game.store_line(JSON.stringify(colorful_stars_collected))
+	save_Game.close()
 
 func restore():
-	var save_GameState = FileAccess.open("user://saveGameState.save", FileAccess.READ)
-	if not save_GameState:
+	var save_Game = FileAccess.open("user://saveGame.save", FileAccess.READ)
+	if not save_Game:
 		return # Error! We don't have a save to load.
 	
-	while save_GameState.get_position() < save_GameState.get_length():
+	while save_Game.get_position() < save_Game.get_length():
 		# Get the saved dictionary from the next line in the save file
 		var test_json_conv = JSON.new()
-		test_json_conv.parse(save_GameState.get_line())
+		test_json_conv.parse(save_Game.get_line())
 		var node_data = test_json_conv.get_data()
 
 		# Now we set the remaining variables.
 		for key in node_data.keys():
 			colorful_stars_collected[key] = node_data[key]
 
-	save_GameState.close()
+	save_Game.close()

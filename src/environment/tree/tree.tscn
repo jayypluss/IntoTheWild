@@ -1,18 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://c2pmpc3weqso2"]
+[gd_scene load_steps=11 format=3 uid="uid://c2pmpc3weqso2"]
 
 [ext_resource type="Script" path="res://src/environment/tree/tree.gd" id="1_7qi6v"]
+[ext_resource type="Material" uid="uid://ddgqn217e1hrc" path="res://assets/materials/wood.tres" id="2_lf5mj"]
 [ext_resource type="Script" path="res://src/environment/tree/wood_trunk.gd" id="2_p1qev"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_4nfus"]
-seed = 2
-frequency = 0.055
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rgy7t"]
-noise = SubResource("FastNoiseLite_4nfus")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3wup"]
-albedo_color = Color(0.423529, 0.309804, 0, 1)
-albedo_texture = SubResource("NoiseTexture2D_rgy7t")
 
 [sub_resource type="Gradient" id="Gradient_v8v8g"]
 offsets = PackedFloat32Array(0.2, 1)
@@ -56,7 +46,7 @@ collision_layer = 2
 collision_mask = 3
 height = 1.0
 sides = 32
-material = SubResource("StandardMaterial3D_f3wup")
+material = ExtResource("2_lf5mj")
 
 [node name="Bush" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.67787, 0)
@@ -85,7 +75,7 @@ collision_layer = 2
 collision_mask = 3
 height = 3.0
 sides = 32
-material = SubResource("StandardMaterial3D_f3wup")
+material = ExtResource("2_lf5mj")
 
 [node name="WoodTrunkCollision" type="CollisionShape3D" parent="WoodTrunk"]
 shape = SubResource("CylinderShape3D_hpc1s")

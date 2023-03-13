@@ -15,7 +15,7 @@ var blueprint_mode:= false
 
 		
 func _ready():
-	GameState.player = self
+	Game.player = self
 	check_everything_is_not_null()
 
 func check_everything_is_not_null():
@@ -51,7 +51,7 @@ func toggle_blueprint_mode():
 func hold_blueprint(index: int):
 	if !blueprint_placement.is_holding_blueprint():
 		var blueprint_title = %PlayerHUD/BlueprintsList.get_item_text(index)
-		var node = load('res://src/blueprints/' + blueprint_title.to_lower() + '/' + blueprint_title + '.tscn')
+		var node = load('res://src/blueprints/' + blueprint_title.to_lower() + '/' + blueprint_title.to_lower() + '.tscn')
 		var instance = node.instantiate()
 		blueprint_placement.add_child(instance)
 		blueprint_placement.setup_blueprint()

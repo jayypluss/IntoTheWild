@@ -3,7 +3,7 @@ extends RayCast3D
 var blueprint_res
 
 func _ready():
-	blueprint_res = preload('res://src/blueprints/blueprint_material.tres')
+	blueprint_res = preload('res://assets/shaders/blueprint.gdshader')
 
 func _physics_process(_delta):
 	if is_holding_blueprint():
