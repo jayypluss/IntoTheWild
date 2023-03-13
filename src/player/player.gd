@@ -8,6 +8,7 @@ extends CharacterBody3D
 @onready var hud: Control = %PlayerHUD
 @onready var hand: Node3D = $CameraPivot/Horizontal/Vertical/PlayerHand
 @onready var skills: Node = $PlayerSkills
+@onready var blueprint_placement: RayCast3D = %CameraPivot/Horizontal/Vertical/BlueprintPlacement
 
 var last_floor_position: Vector3
 var blueprint_mode:= false
@@ -56,15 +57,14 @@ func die():
 
 func toggle_blueprint_mode():
 	blueprint_mode = hud.toggle_blueprint_mode()
-	print('blueprint_mode: ', blueprint_mode)
-
-
-func _on_blueprints_list_item_selected(index: int):
-	hold_blueprint(index)
-	blueprint_mode = hud.toggle_blueprint_mode()
 
 func hold_blueprint(index: int):
-	var blueprint_title = %PlayerHUD/BlueprintsList.get_item_text(index).to_camel_case()
-	var blueprint_res = Metadata.blueprints[blueprint_title]
-	print(blueprint_res)
-	print('holding blueprint: ', blueprint_title)
+	if !blueprint_placement.is_holding_blueprint():
+		var blueprint_title = %PlayerHUD/BlueprintsList.get_item_text(index)
+		var node = load('res://src/blueprints/' + blueprint_title.to_lower() + '/' + blueprint_title + '.tscn')
+		var instance = node.instantiate()
+		blueprint_placement.add_child(instance)
+		blueprint_placement.setup_blueprint()
+
+func place_blueprint():
+	blueprint_placement.call_deferred('place_blueprint')

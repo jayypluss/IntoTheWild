@@ -282,4 +282,3 @@ script = ExtResource("6_boukr")
 [connection signal="timeout" from="LastPositionTimer" to="." method="_on_last_position_timer_timeout"]
 [connection signal="area_shape_entered" from="InteractionField" to="CameraPivot/Horizontal/Vertical/PlayerHand" method="_on_interaction_field_area_shape_entered"]
 [connection signal="area_shape_exited" from="InteractionField" to="CameraPivot/Horizontal/Vertical/PlayerHand" method="_on_interaction_field_area_shape_exited"]
-[connection signal="item_selected" from="PlayerHUD/BlueprintsList" to="." method="_on_blueprints_list_item_selected"]

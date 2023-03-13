@@ -76,3 +76,8 @@ func _physics_process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed('close'):
 		player.hud.close_all()
+		
+	if Input.is_action_just_pressed('enter') and player.blueprint_mode:
+		var all_selected = player.hud.blueprints.get_selected_items()
+		player.hud.close_all()
+		player.hold_blueprint(all_selected[0])
