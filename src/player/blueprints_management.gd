@@ -20,12 +20,12 @@ func toggle_blueprint_mode():
 	blueprint_mode = player.hud.toggle_blueprint_mode()
 
 func hold_blueprint(index: int):
-	if !player.blueprint_placement.is_holding_blueprint():
+	if !player.placement_ray.is_holding_blueprint():
 		var blueprint_title = player.hud.blueprints_list.get_item_text(index)
 		var node = load('res://src/blueprints/' + blueprint_title.to_lower() + '/' + blueprint_title.to_lower() + '.tscn')
 		var instance = node.instantiate()
-		player.blueprint_placement.add_child(instance)
-		player.blueprint_placement.setup_blueprint()
+		player.placement_ray.add_child(instance)
+		player.placement_ray.setup_blueprint()
 
 func place_blueprint():
-	player.blueprint_placement.call_deferred('place_blueprint')
+	player.placement_ray.call_deferred('place_blueprint')

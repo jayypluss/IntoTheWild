@@ -83,7 +83,7 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_tfpew")
 draw_pass_1 = SubResource("CylinderMesh_dce40")
 
-[node name="BlueprintPlacement" type="RayCast3D" parent="CameraPivot/Horizontal/Vertical"]
+[node name="PlayerPlacementRay" type="RayCast3D" parent="CameraPivot/Horizontal/Vertical"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02418e-07, 1.54423, -1.17153)
 target_position = Vector3(0, -2, -5)
 collision_mask = 2

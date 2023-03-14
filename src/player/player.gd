@@ -8,7 +8,7 @@ extends CharacterBody3D
 @onready var hud: PlayerHUD = %PlayerHUD
 @onready var hand: PlayerHand = $CameraPivot/Horizontal/Vertical/PlayerHand
 @onready var skills: PlayerSkills = $PlayerSkills
-@onready var blueprint_placement: PlayerBlueprintPlacement = %CameraPivot/Horizontal/Vertical/BlueprintPlacement
+@onready var placement_ray: PlayerPlacementRay = %CameraPivot/Horizontal/Vertical/PlayerPlacementRay
 @onready var blueprints_management: BlueprintsManagement = $BlueprintsManagement
 
 var last_floor_position:= Vector3(0, 2, 0)
