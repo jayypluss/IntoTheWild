@@ -1,17 +1,19 @@
 extends Node
 
+
+@onready var player: Player
+@onready var player_hud: Player
+
 @export var walk_speed := 8.0
 @export var run_speed := 13.0
 @export var jump_impulse := 14.0
 @export var fall_acceleration := 50.0
 
-@onready var player: Player
-@onready var player_hud: Player
-
 var paused := false
 var is_jumping := false
 var speed = 0
 var has_jumped_sprinting := false
+
 
 func _ready():
 	player = self.owner
@@ -29,20 +31,19 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 		
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed('toggle_blueprint_mode'):
-		player.toggle_blueprint_mode()
-		
-	if Input.is_action_just_pressed('close'):
-		player.hud.close_all()
-		
-	if player.blueprint_mode and Input.is_action_just_pressed('enter'):
-		var all_selected = player.hud.blueprints.get_selected_items()
-		player.hud.close_all()
-		player.hold_blueprint(all_selected[0])
-		
 	if paused: # Used to prevent movement during a cutscene.
 		return
 	
+	hud()
+	
+	blueprints()
+	
+	move_and_rotate(delta)
+	
+	skills()
+	
+	
+func move_and_rotate(delta: float):
 	# Get direction vector based checked input.
 	var direction = Vector3(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
@@ -93,3 +94,21 @@ func _physics_process(delta: float) -> void:
 	player.set_up_direction(Vector3.UP)
 	player.move_and_slide()
 	player.velocity = player.velocity
+	
+func hud():
+	if Input.is_action_just_pressed('toggle_blueprint_mode'):
+		player.blueprints_management.toggle_blueprint_mode()
+		
+	if Input.is_action_just_pressed('close'):
+		player.hud.close()
+		
+func blueprints():
+	if Input.is_action_just_pressed('enter'):
+		player.blueprints_management.enter_just_pressed()
+
+func skills():
+	if Input.is_action_pressed('click'):
+		player.skills.click()
+	
+	if Input.is_action_just_released('click'):
+		player.skills.release()

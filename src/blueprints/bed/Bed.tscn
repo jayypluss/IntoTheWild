@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://s4olgswjv7ui"]
+[gd_scene load_steps=3 format=3 uid="uid://s4olgswjv7ui"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dmivd"]
 radius = 0.231
@@ -6,20 +6,28 @@ height = 3.0
 radial_segments = 4
 rings = 1
 
-[node name="Bed" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_07x3b"]
+size = Vector3(1.309, 0.327, 3)
+
+[node name="BedMesh" type="StaticBody3D"]
+collision_layer = 16
+collision_mask = 15
 
 [node name="WoodTrunk1" type="CSGMesh3D" parent="."]
-transform = Transform3D(0.707107, 3.09086e-08, 0.707107, 0.707107, -3.09086e-08, -0.707107, 0, 1, -4.37114e-08, -0.493833, 0, 0)
+transform = Transform3D(0.707107, 3.09086e-08, 0.707107, 0.707107, -3.09086e-08, -0.707107, 0, 1, -4.37114e-08, -0.490723, 0, 0)
 mesh = SubResource("CapsuleMesh_dmivd")
 
 [node name="WoodTrunk2" type="CSGMesh3D" parent="."]
-transform = Transform3D(0.707107, 3.09086e-08, 0.707107, 0.707107, -3.09086e-08, -0.707107, 0, 1, -4.37114e-08, -0.165413, 0, 0)
+transform = Transform3D(0.707107, 3.09086e-08, 0.707107, 0.707107, -3.09086e-08, -0.707107, 0, 1, -4.37114e-08, -0.163675, 0, 0)
 mesh = SubResource("CapsuleMesh_dmivd")
 
 [node name="WoodTrunk3" type="CSGMesh3D" parent="."]
-transform = Transform3D(0.707107, 3.09086e-08, 0.707107, 0.707107, -3.09086e-08, -0.707107, 0, 1, -4.37114e-08, 0.169066, 0, 0)
+transform = Transform3D(0.707107, 3.09086e-08, 0.707107, 0.707107, -3.09086e-08, -0.707107, 0, 1, -4.37114e-08, 0.163381, 0, 0)
 mesh = SubResource("CapsuleMesh_dmivd")
 
 [node name="WoodTrunk4" type="CSGMesh3D" parent="."]
-transform = Transform3D(0.707107, 3.09086e-08, 0.707107, 0.707107, -3.09086e-08, -0.707107, 0, 1, -4.37114e-08, 0.506576, 0, 0)
+transform = Transform3D(0.707107, 3.09086e-08, 0.707107, 0.707107, -3.09086e-08, -0.707107, 0, 1, -4.37114e-08, 0.490895, 0, 0)
 mesh = SubResource("CapsuleMesh_dmivd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_07x3b")

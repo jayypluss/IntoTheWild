@@ -1,7 +1,8 @@
 extends Control
+class_name PlayerHUD
 
 @onready var inventory: ItemList = $Inventory
-@onready var blueprints: ItemList = $BlueprintsList
+@onready var blueprints_list: ItemList = $BlueprintsList
 var items: Dictionary = {  }
 
 
@@ -18,14 +19,14 @@ func add_item_to_inventory(item_node: Node3D):
 		items.merge( { item_node.title: { 'quantity': 1, 'index': idx } }, false)
 	item_node.queue_free()
 
-func close_all():
+func close():
 	inventory.visible = false
-	blueprints.visible = false
+	blueprints_list.visible = false
 
 func toggle_blueprint_mode():
-	blueprints.visible = !blueprints.visible
-	if blueprints.visible:
+	blueprints_list.visible = !blueprints_list.visible
+	if blueprints_list.visible:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	return blueprints.visible
+	return blueprints_list.visible

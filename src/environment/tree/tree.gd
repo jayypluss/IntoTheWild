@@ -14,7 +14,7 @@ var is_broken := false
 func _physics_process(_delta: float) -> void:
 	if (wood_trunk and wood_trunk.is_player_near
 		and !is_broken
-		and Game.player.is_skill_selected('chopping_magic')):
+		and Game.player.skills.is_skill_selected('chopping_magic')):
 			if Input.is_action_pressed('click'):
 				progress_bar.visible = true
 				increment_value()

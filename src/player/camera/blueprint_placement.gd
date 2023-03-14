@@ -1,4 +1,5 @@
 extends RayCast3D
+class_name PlayerBlueprintPlacement
 
 var blueprint_res
 

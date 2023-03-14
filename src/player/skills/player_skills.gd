@@ -8,17 +8,24 @@ var owned_skills := ['chopping_magic']
 var selected_skill := 'chopping_magic'
 var is_casting_magic := false
 
-func _process(_delta):
-	if (Input.is_action_pressed('click') 
-		and !hand.holding_item 
+
+func set_selected_skill(skill_id: String):
+	selected_skill = skill_id
+
+func is_skill_selected(skill):
+	return selected_skill == skill
+
+func click():
+	if (!hand.holding_item 
 		and selected_skill):
-		is_casting_magic = true
+			is_casting_magic = true
 	else:
 		is_casting_magic = false
 				
 	if particles_emitter:
 		particles_emitter.emitting = is_casting_magic
 	
-
-func set_selected_skill(skill_id: String):
-	selected_skill = skill_id
+func release():
+	is_casting_magic = false
+	if particles_emitter:
+		particles_emitter.emitting = is_casting_magic

@@ -17,6 +17,6 @@ func _process(_delta):
 
 func select_item(idx: int):
 	select(idx)
-	if GameState.player:
-		GameState.player.select_skill(shortcuts_allocation[idx])
+	if Game.player:
+		Game.player.skills.set_selected_skill(shortcuts_allocation[idx])
 
