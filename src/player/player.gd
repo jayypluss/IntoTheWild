@@ -11,7 +11,7 @@ extends CharacterBody3D
 @onready var blueprint_placement: PlayerBlueprintPlacement = %CameraPivot/Horizontal/Vertical/BlueprintPlacement
 @onready var blueprints_management: BlueprintsManagement = $BlueprintsManagement
 
-var last_floor_position: Vector3
+var last_floor_position:= Vector3(0, 2, 0)
 
 
 func _ready():
@@ -28,7 +28,8 @@ func _on_last_position_timer_timeout():
 	if (is_on_floor() 
 		and last_slide_collision 
 		and last_slide_collision.get_collider() 
-		and last_slide_collision.get_collider() is CSGMesh3D):
+		and (last_slide_collision.get_collider() is CSGMesh3D
+		or last_slide_collision.get_collider().is_in_group('Floors'))):
 			last_floor_position = position
 
 func die():

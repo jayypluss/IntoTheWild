@@ -49,7 +49,7 @@ script = ExtResource("1_pn17q")
 [node name="Player" parent="." instance=ExtResource("1_qtwv6")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10.5957, 4.69254, -11.1809)
 
-[node name="Land" type="CSGMesh3D" parent="."]
+[node name="Land" type="CSGMesh3D" parent="." groups=["Floors"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0183468, 0)
 use_collision = true
 collision_layer = 2
