@@ -1,5 +1,5 @@
 extends Node3D
-
+class_name PlayerHand
 
 @onready var player_hud = %PlayerHUD
 

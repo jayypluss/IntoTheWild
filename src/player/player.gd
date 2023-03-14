@@ -2,16 +2,18 @@
 class_name Player
 extends CharacterBody3D
 
+
 @onready var camera: Camera3D = %PlayerCam
-@onready var hud: Control = %PlayerHUD
-@onready var hand: Node3D = $CameraPivot/Horizontal/Vertical/PlayerHand
-@onready var skills: Node = $PlayerSkills
-@onready var blueprint_placement: RayCast3D = %CameraPivot/Horizontal/Vertical/BlueprintPlacement
+@onready var camera_pivot: CameraPivot = %CameraPivot
+@onready var hud: PlayerHUD = %PlayerHUD
+@onready var hand: PlayerHand = $CameraPivot/Horizontal/Vertical/PlayerHand
+@onready var skills: PlayerSkills = $PlayerSkills
+@onready var blueprint_placement: PlayerBlueprintPlacement = %CameraPivot/Horizontal/Vertical/BlueprintPlacement
 @onready var blueprints_management: BlueprintsManagement = $BlueprintsManagement
 
 var last_floor_position: Vector3
 
-		
+
 func _ready():
 	Game.player = self
 

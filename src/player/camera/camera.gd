@@ -1,4 +1,6 @@
 extends Node3D
+class_name CameraPivot
+
 
 const ZOOM_STEP := 0.5
 var min_zoom := 9

@@ -1,4 +1,5 @@
 extends Node
+class_name PlayerSkills
 
 @onready var camera: Camera3D = %PlayerCam
 @onready var particles_emitter: GPUParticles3D = %CameraPivot/Horizontal/Vertical/PlayerEmitter

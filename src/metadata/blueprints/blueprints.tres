@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Blueprints" load_steps=5 format=3]
+[gd_resource type="Resource" script_class="Blueprints" load_steps=5 format=3 uid="uid://dqsdasu6r112u"]
 
 [ext_resource type="PackedScene" uid="uid://s4olgswjv7ui" path="res://src/blueprints/bed/bed.tscn" id="1_53hdn"]
 [ext_resource type="Script" path="res://src/metadata/blueprints/blueprints.gd" id="1_cc2x1"]
