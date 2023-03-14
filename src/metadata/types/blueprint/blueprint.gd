@@ -1,12 +1,23 @@
 extends Resource
 class_name Blueprint
 
+@export var name: String = ''
+@export_multiline var description: String = ''
 @export var category: String = ''
-@export var mesh: Node3D = null
+@export var body_scene: PackedScene = null
+@export var texture: AtlasTexture = null
 @export var recipe:= ['']
 
-func _init(p_category = '', p_mesh = null, p_recipe = ['']):
-	category = p_category
-	mesh = p_mesh
-	recipe = p_recipe
+func _init(p_name = '',
+	p_description = '',
+	p_category = '',
+	p_body_scene = null,
+	p_texture = null,
+	p_recipe = ['']):
+		name = p_name
+		description = p_description
+		category = p_category
+		body_scene = p_body_scene
+		texture = p_texture
+		recipe = p_recipe
 

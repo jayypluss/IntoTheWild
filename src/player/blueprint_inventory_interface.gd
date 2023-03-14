@@ -1,7 +1,8 @@
-extends Node
+extends Control
 class_name BlueprintsManagement
 
 @onready var player: Player
+@onready var blueprint_inventory: PanelContainer = $BlueprintInventory
 
 var blueprint_mode:= false
 
@@ -9,15 +10,15 @@ var blueprint_mode:= false
 func _ready():
 	player = self.owner
 
+func set_player_blueprints_inventory_data(blueprint_inventory_data: BlueprintSlotData) -> void:
+	blueprint_inventory.set_blueprints_inventory_data(blueprint_inventory_data)
+
 func enter_just_pressed():
 	if blueprint_mode:
 		var all_selected = player.hud.blueprints_list.get_selected_items()
 		player.hud.close()
 		if all_selected and all_selected.size() > 0:
 			hold_blueprint(all_selected[0])
-
-func toggle_blueprint_mode():
-	blueprint_mode = player.blueprint_inventory_interface.toggle_blueprint_mode()
 
 func hold_blueprint(index: int):
 	if !player.placement_ray.is_holding_blueprint():
@@ -29,3 +30,10 @@ func hold_blueprint(index: int):
 
 func place_blueprint():
 	player.placement_ray.call_deferred('place_blueprint')
+
+func close():
+	blueprint_inventory.visible = false
+
+func toggle_blueprint_mode() -> bool:
+	blueprint_inventory.visible = !blueprint_inventory.visible
+	return blueprint_inventory.visible

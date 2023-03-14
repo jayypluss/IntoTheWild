@@ -13,6 +13,8 @@ var v_max: float = 90 # Look down
 var h_acceleration := 10
 var v_acceleration := 10
 
+var paused:= false
+
 #var default_camera_zoom := 10
 
 func _ready() -> void:
@@ -27,8 +29,8 @@ func _ready() -> void:
 #	$Horizontal/Vertical/PlayerCam.far = ConfigsState.camera_far
 
 func _input(event: InputEvent) -> void:
-#  if get_parent().paused: # Used to prevent camera movement when returning from a cutscene.
-#    return
+	if paused:
+		return
 
 	var _zoom = get_node("%PlayerCam").position.z
 

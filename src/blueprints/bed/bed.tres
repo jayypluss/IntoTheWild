@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Blueprint" load_steps=5 format=3 uid="uid://nuayfx4soo2l"]
+
+[ext_resource type="Script" path="res://src/metadata/types/blueprint/blueprint.gd" id="1_7hlgs"]
+[ext_resource type="PackedScene" uid="uid://s4olgswjv7ui" path="res://src/blueprints/bed/bed.tscn" id="1_kl5h2"]
+[ext_resource type="Texture2D" uid="uid://by0pnvrmapckh" path="res://assets/sprites/#1 - Transparent Icons.png" id="2_asrue"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okwq1"]
+atlas = ExtResource("2_asrue")
+region = Rect2(96, 128, 32, 32)
+
+[resource]
+script = ExtResource("1_7hlgs")
+name = "Bed"
+description = "A good sleep can be done on here."
+category = "Home"
+body_scene = ExtResource("1_kl5h2")
+texture = SubResource("AtlasTexture_okwq1")
+recipe = ["wood_trunk", "wood_trunk", "wood_trunk"]
+metadata/_editor_prop_ptr_body = null

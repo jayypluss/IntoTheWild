@@ -18,6 +18,7 @@ var has_jumped_sprinting := false
 func _ready():
 	player = self.owner
 
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed('click'):
 		if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
@@ -29,20 +30,49 @@ func _input(event: InputEvent) -> void:
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		get_viewport().set_input_as_handled()
-		
+
+
 func _physics_process(delta: float) -> void:
+	hud()
+
 	if paused: # Used to prevent movement during a cutscene.
 		return
-	
-	hud()
-	
-	blueprints()
-	
+
 	move_and_rotate(delta)
-	
 	skills()
+
+
+func hud():
+	if Input.is_action_just_pressed('close'):
+		player.hud.close()
+	blueprints()
+
+
+func blueprints():
+	if Input.is_action_just_pressed('toggle_blueprint_mode'):
+		var blueprint_inventory_visible = player.blueprint_inventory_interface.toggle_blueprint_mode()
+		if blueprint_inventory_visible:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			paused = true
+			player.hud.close_inventory()
+		else: 
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			paused = false
+		
+		player.camera_pivot.paused = paused
+		
+	if Input.is_action_just_pressed('enter'):
+		player.blueprint_inventory_interface.enter_just_pressed()
+
+
+func skills():
+	if Input.is_action_pressed('click'):
+		player.skills.click()
 	
-	
+	if Input.is_action_just_released('click'):
+		player.skills.release()
+
+
 func move_and_rotate(delta: float):
 	# Get direction vector based checked input.
 	var direction = Vector3(
@@ -94,21 +124,3 @@ func move_and_rotate(delta: float):
 	player.set_up_direction(Vector3.UP)
 	player.move_and_slide()
 	player.velocity = player.velocity
-	
-func hud():
-	if Input.is_action_just_pressed('toggle_blueprint_mode'):
-		player.blueprints_management.toggle_blueprint_mode()
-		
-	if Input.is_action_just_pressed('close'):
-		player.hud.close()
-		
-func blueprints():
-	if Input.is_action_just_pressed('enter'):
-		player.blueprints_management.enter_just_pressed()
-
-func skills():
-	if Input.is_action_pressed('click'):
-		player.skills.click()
-	
-	if Input.is_action_just_released('click'):
-		player.skills.release()

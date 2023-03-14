@@ -9,13 +9,16 @@ extends CharacterBody3D
 @onready var hand: PlayerHand = $CameraPivot/Horizontal/Vertical/PlayerHand
 @onready var skills: PlayerSkills = $PlayerSkills
 @onready var placement_ray: PlayerPlacementRay = %CameraPivot/Horizontal/Vertical/PlayerPlacementRay
-@onready var blueprints_management: BlueprintsManagement = $BlueprintsManagement
+@onready var blueprint_inventory_interface = $PlayerHUD/BlueprintInventoryInterface
+
+@export var blueprint_data: BlueprintSlotData
 
 var last_floor_position:= Vector3(0, 2, 0)
 
 
 func _ready():
 	Game.player = self
+	blueprint_inventory_interface.set_player_blueprints_inventory_data(blueprint_data)
 
 func _get_configuration_warnings() -> PackedStringArray:
 	if not camera:
