@@ -17,7 +17,7 @@ func populate_item_grid(blueprint_inventory_data: BlueprintSlotData) -> void:
 		var slot = Slot.instantiate()
 		blueprint_grid.add_child(slot)
 		
-		slot.slot_clicked.connect(func(index, button, double_click):
+		slot.slot_clicked.connect(func(_index, _button, _double_click):
 			for child in blueprint_grid.get_children(false):
 				child.remove_theme_stylebox_override('panel')
 		)

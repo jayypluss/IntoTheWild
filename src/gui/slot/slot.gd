@@ -22,6 +22,7 @@ func set_slot_datum(slot_datum: BluepintSlotDatum) -> void:
 
 
 func _on_gui_input(event: InputEvent):
+	print(event)
 	if (event is InputEventMouseButton
 		and (event.button_index == MOUSE_BUTTON_LEFT
 		or event.button_index == MOUSE_BUTTON_RIGHT)

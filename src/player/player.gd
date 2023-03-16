@@ -10,7 +10,7 @@ extends CharacterBody3D
 @onready var hand: PlayerHand = $CameraPivot/Horizontal/Vertical/PlayerHand
 @onready var skills: PlayerSkills = $PlayerSkills
 @onready var placement_ray: PlayerPlacementRay = %CameraPivot/Horizontal/Vertical/PlayerPlacementRay
-@onready var blueprint_inventory_interface = $PlayerHUD/BlueprintInventoryInterface
+@onready var blueprint_inventory_control = $PlayerHUD/BlueprintsInventoryControl
 
 @export var blueprint_data: BlueprintSlotData
 
@@ -19,8 +19,8 @@ var last_floor_position:= Vector3(0, 2, 0)
 
 func _ready():
 	Game.player = self
-	blueprint_inventory_interface.set_player_blueprints_inventory_data(blueprint_data)
-	blueprint_inventory_interface.chose_blueprint.connect(func():
+	blueprint_inventory_control.set_player_blueprints_inventory_data(blueprint_data)
+	blueprint_inventory_control.chose_blueprint.connect(func():
 		input.paused = false
 		camera_pivot.paused = false
 	)

@@ -44,17 +44,19 @@ func _physics_process(delta: float) -> void:
 
 func hud():
 	if Input.is_action_just_pressed('close'):
-		player.hud.close()
+		player.hud.close_hud_windows()
 	blueprints()
 
 
 func blueprints():
 	if Input.is_action_just_pressed('toggle_blueprint_mode'):
-		var blueprint_inventory_visible = player.blueprint_inventory_interface.toggle_blueprint_mode()
+		print('pressed toggle_blueprint_mode')
+		var blueprint_inventory_visible = player.blueprint_inventory_control.toggle_blueprint_visibility()
+		print('blueprint_inventory_visible: ', blueprint_inventory_visible)
 		if blueprint_inventory_visible:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			paused = true
-			player.hud.close_inventory()
+			player.hud.inventory_control.close()
 		else: 
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			paused = false
@@ -62,7 +64,7 @@ func blueprints():
 		player.camera_pivot.paused = paused
 		
 	if Input.is_action_just_pressed('enter'):
-		player.blueprint_inventory_interface.enter_just_pressed()
+		player.blueprint_inventory_control.enter_just_pressed()
 
 
 func skills():

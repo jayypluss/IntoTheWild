@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bltf1nqn2mtqa"]
+[gd_scene load_steps=20 format=3 uid="uid://bltf1nqn2mtqa"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1"]
 [ext_resource type="Script" path="res://src/player/input/input.gd" id="2_6ltf4"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://src/player/hud/item_list.gd" id="7_dhfqa"]
 [ext_resource type="PackedScene" uid="uid://dfrqqlo52hyyg" path="res://src/gui/blueprint_inventory/blueprint_inventory.tscn" id="9_vbrei"]
 [ext_resource type="Script" path="res://src/player/blueprint_inventory_interface.gd" id="10_wwlr2"]
+[ext_resource type="Script" path="res://src/player/items_inventory_control.gd" id="13_xoly5"]
 
 [sub_resource type="CapsuleShape3D" id="5"]
 
@@ -93,7 +94,7 @@ script = ExtResource("5_1pxnq")
 unique_name_in_owner = true
 script = ExtResource("5_d1wna")
 
-[node name="BlueprintInventoryInterface" type="Control" parent="PlayerHUD"]
+[node name="BlueprintsInventoryControl" type="Control" parent="PlayerHUD"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -102,7 +103,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("10_wwlr2")
 
-[node name="BlueprintInventory" parent="PlayerHUD/BlueprintInventoryInterface" instance=ExtResource("9_vbrei")]
+[node name="BlueprintsInventory" parent="PlayerHUD/BlueprintsInventoryControl" instance=ExtResource("9_vbrei")]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -116,19 +117,57 @@ offset_right = -483.752
 offset_bottom = -109.6
 grow_vertical = 2
 
-[node name="ItemList" type="ItemList" parent="PlayerHUD"]
-anchors_preset = -1
-anchor_top = 0.887
+[node name="LastInputIndicator" type="Control" parent="PlayerHUD"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 418.0
+offset_bottom = 58.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="PlayerHUD/LastInputIndicator"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -55.5
+offset_right = 55.5
+offset_bottom = 26.0
+grow_horizontal = 2
+text = "Pressing Input"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="PressedInputText" type="Label" parent="PlayerHUD/LastInputIndicator"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 123.0
-offset_top = 25.224
-offset_right = -110.0
-offset_bottom = -22.0
+offset_top = -29.0
 grow_horizontal = 2
 grow_vertical = 0
-size_flags_horizontal = 4
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_4v1iv")
+
+[node name="PanelContainer" type="PanelContainer" parent="PlayerHUD"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -458.0
+offset_top = -61.0
+offset_right = 458.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_vertical = 8
+
+[node name="Shortcuts" type="ItemList" parent="PlayerHUD/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 0
 theme_override_font_sizes/font_size = 10
 auto_height = true
 item_count = 10
@@ -146,113 +185,83 @@ item_8/text = "9"
 item_9/text = "0"
 script = ExtResource("7_dhfqa")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PlayerHUD"]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 127.0
-offset_top = -23.0
-offset_right = -153.0
-offset_bottom = 3.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="ShorctusLabels" type="HBoxContainer" parent="PlayerHUD/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 8
 theme_override_constants/separation = 85
+alignment = 1
 
-[node name="1" type="Label" parent="PlayerHUD/HBoxContainer"]
+[node name="1" type="Label" parent="PlayerHUD/PanelContainer/ShorctusLabels"]
 layout_mode = 2
 text = "1"
 label_settings = SubResource("LabelSettings_eqxc7")
 
-[node name="2" type="Label" parent="PlayerHUD/HBoxContainer"]
+[node name="2" type="Label" parent="PlayerHUD/PanelContainer/ShorctusLabels"]
 layout_mode = 2
 text = "2"
 label_settings = SubResource("LabelSettings_eqxc7")
 
-[node name="3" type="Label" parent="PlayerHUD/HBoxContainer"]
+[node name="3" type="Label" parent="PlayerHUD/PanelContainer/ShorctusLabels"]
 layout_mode = 2
 text = "3"
 label_settings = SubResource("LabelSettings_eqxc7")
 
-[node name="4" type="Label" parent="PlayerHUD/HBoxContainer"]
+[node name="4" type="Label" parent="PlayerHUD/PanelContainer/ShorctusLabels"]
 layout_mode = 2
 text = "4"
 label_settings = SubResource("LabelSettings_eqxc7")
 
-[node name="5" type="Label" parent="PlayerHUD/HBoxContainer"]
+[node name="5" type="Label" parent="PlayerHUD/PanelContainer/ShorctusLabels"]
 layout_mode = 2
 text = "5"
 label_settings = SubResource("LabelSettings_eqxc7")
 
-[node name="6" type="Label" parent="PlayerHUD/HBoxContainer"]
+[node name="6" type="Label" parent="PlayerHUD/PanelContainer/ShorctusLabels"]
 layout_mode = 2
 text = "6"
 label_settings = SubResource("LabelSettings_eqxc7")
 
-[node name="7" type="Label" parent="PlayerHUD/HBoxContainer"]
+[node name="7" type="Label" parent="PlayerHUD/PanelContainer/ShorctusLabels"]
 layout_mode = 2
 text = "7"
 label_settings = SubResource("LabelSettings_eqxc7")
 
-[node name="8" type="Label" parent="PlayerHUD/HBoxContainer"]
+[node name="8" type="Label" parent="PlayerHUD/PanelContainer/ShorctusLabels"]
 layout_mode = 2
 text = "8"
 label_settings = SubResource("LabelSettings_eqxc7")
 
-[node name="9" type="Label" parent="PlayerHUD/HBoxContainer"]
+[node name="9" type="Label" parent="PlayerHUD/PanelContainer/ShorctusLabels"]
 layout_mode = 2
 text = "9"
 label_settings = SubResource("LabelSettings_eqxc7")
 
-[node name="10" type="Label" parent="PlayerHUD/HBoxContainer"]
+[node name="10" type="Label" parent="PlayerHUD/PanelContainer/ShorctusLabels"]
 layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_eqxc7")
 
-[node name="Container" type="Control" parent="PlayerHUD"]
+[node name="ItemsInventoryControl" type="Control" parent="PlayerHUD"]
 layout_mode = 3
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 58.0
-grow_horizontal = 2
-
-[node name="Label" type="Label" parent="PlayerHUD/Container"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -55.5
-offset_right = 55.5
-offset_bottom = 26.0
-grow_horizontal = 2
-text = "Pressing Input"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Label2" type="Label" parent="PlayerHUD/Container"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -29.0
 grow_horizontal = 2
-grow_vertical = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("6_4v1iv")
+grow_vertical = 2
+script = ExtResource("13_xoly5")
 
-[node name="Inventory" type="ItemList" parent="PlayerHUD"]
+[node name="ItemsInventory" type="ItemList" parent="PlayerHUD/ItemsInventoryControl"]
 visible = false
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.707
 anchor_top = 0.099
 anchor_right = 0.958
 anchor_bottom = 0.863
-offset_left = -0.463989
-offset_top = -0.152008
-offset_right = 0.383911
-offset_bottom = -0.223999
+offset_left = 1.53601
+offset_top = 0.848007
+offset_right = 2.38391
+offset_bottom = 0.776001
 grow_horizontal = 0
 grow_vertical = 2
 

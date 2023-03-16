@@ -17,7 +17,7 @@ func enter_just_pressed():
 			hold_blueprint(all_selected[0])
 
 func toggle_blueprint_mode():
-	blueprint_mode = player.blueprint_inventory_interface.toggle_blueprint_mode()
+	blueprint_mode = player.blueprint_inventory_control.toggle_blueprint_mode()
 
 func hold_blueprint(index: int):
 	if !player.placement_ray.is_holding_blueprint():

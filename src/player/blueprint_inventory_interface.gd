@@ -4,7 +4,7 @@ class_name BlueprintsManagement
 signal chose_blueprint()
 
 @onready var player: Player
-@onready var blueprint_inventory: PanelContainer = $BlueprintInventory
+@onready var blueprint_inventory: PanelContainer = $BlueprintsInventory
 
 var blueprint_mode:= false
 
@@ -17,7 +17,7 @@ func set_player_blueprints_inventory_data(blueprint_inventory_data: BlueprintSlo
 	blueprint_inventory.set_blueprints_inventory_data(blueprint_inventory_data)
 
 func on_inventory_interact(blueprint_inventory_data: BlueprintSlotData,
-		index: int, button: int, double_click: bool) -> void:
+		index: int, _button: int, double_click: bool) -> void:
 	var clicked_slot = blueprint_inventory_data.slot_data[index]
 	if double_click:
 		hold_blueprint(clicked_slot.item_data)
@@ -43,8 +43,16 @@ func place_blueprint():
 	player.placement_ray.call_deferred('place_blueprint')
 
 func close():
-	blueprint_inventory.visible = false
+	set_blueprints_inventory_visibility(false)
 
-func toggle_blueprint_mode() -> bool:
+func toggle_blueprint_visibility() -> bool:
+	print('1 blueprint_inventory.visible: ', blueprint_inventory.visible)
 	blueprint_inventory.visible = !blueprint_inventory.visible
+	print('2 blueprint_inventory.visible: ', blueprint_inventory.visible)
+	blueprint_mode = blueprint_inventory.visible
+	print('3 blueprint_inventory.visible: ', blueprint_inventory.visible)
 	return blueprint_inventory.visible
+
+func set_blueprints_inventory_visibility(new_value: bool):
+	blueprint_inventory.visible = new_value
+	blueprint_mode = blueprint_inventory.visible
