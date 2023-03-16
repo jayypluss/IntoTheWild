@@ -20,9 +20,9 @@ func _ready():
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed('click'):
-		if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+#	if event.is_action_pressed('click'):
+#		if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
+#			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if event.is_action_pressed('toggle_mouse_captured'):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

@@ -16,4 +16,3 @@ category = "Home"
 body_scene = ExtResource("1_kl5h2")
 texture = SubResource("AtlasTexture_okwq1")
 recipe = ["wood_trunk", "wood_trunk", "wood_trunk"]
-metadata/_editor_prop_ptr_body = null

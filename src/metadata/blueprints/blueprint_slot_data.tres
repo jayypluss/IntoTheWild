@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BluerpintSlotData" load_steps=5 format=3 uid="uid://du4nr15owej6t"]
+[gd_resource type="Resource" script_class="BlueprintSlotData" load_steps=5 format=3 uid="uid://du4nr15owej6t"]
 
 [ext_resource type="Script" path="res://src/metadata/blueprints/blueprint_slot_data.gd" id="1_gfuhh"]
 [ext_resource type="Resource" uid="uid://nuayfx4soo2l" path="res://src/blueprints/bed/bed.tres" id="2_wgmrh"]

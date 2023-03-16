@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://5uwsaqjvcny4"]
 
 [ext_resource type="Script" path="res://src/levels/level_1/level_1.gd" id="1_pn17q"]
-[ext_resource type="PackedScene" uid="uid://cljsx2xktg5r8" path="res://src/player/player.tscn" id="1_qtwv6"]
+[ext_resource type="PackedScene" uid="uid://bltf1nqn2mtqa" path="res://src/player/player.tscn" id="1_qtwv6"]
 [ext_resource type="Script" path="res://src/environment/water/water.gd" id="3_28qfp"]
 [ext_resource type="Shader" path="res://assets/shaders/water.gdshader" id="3_hff7e"]
 [ext_resource type="Material" uid="uid://cxtppegqahg6u" path="res://assets/materials/grass.tres" id="3_lhyhw"]
