@@ -1,6 +1,7 @@
 extends Control
 class_name BlueprintsManagement
 
+
 signal chose_blueprint()
 
 @onready var player: Player
@@ -19,8 +20,10 @@ func set_player_blueprints_inventory_data(blueprint_inventory_data: BlueprintSlo
 func on_inventory_interact(blueprint_inventory_data: BlueprintSlotData,
 		index: int, _button: int, double_click: bool) -> void:
 	var clicked_slot = blueprint_inventory_data.slot_data[index]
-	if double_click:
+	if clicked_slot and double_click:
+		await get_tree().create_timer(0.05).timeout
 		hold_blueprint(clicked_slot.item_data)
+		
 
 
 func enter_just_pressed():
@@ -44,13 +47,11 @@ func place_blueprint():
 
 func close():
 	set_blueprints_inventory_visibility(false)
+	blueprint_mode = false
 
 func toggle_blueprint_visibility() -> bool:
-	print('1 blueprint_inventory.visible: ', blueprint_inventory.visible)
 	blueprint_inventory.visible = !blueprint_inventory.visible
-	print('2 blueprint_inventory.visible: ', blueprint_inventory.visible)
 	blueprint_mode = blueprint_inventory.visible
-	print('3 blueprint_inventory.visible: ', blueprint_inventory.visible)
 	return blueprint_inventory.visible
 
 func set_blueprints_inventory_visibility(new_value: bool):

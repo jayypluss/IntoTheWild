@@ -50,9 +50,7 @@ func hud():
 
 func blueprints():
 	if Input.is_action_just_pressed('toggle_blueprint_mode'):
-		print('pressed toggle_blueprint_mode')
 		var blueprint_inventory_visible = player.blueprint_inventory_control.toggle_blueprint_visibility()
-		print('blueprint_inventory_visible: ', blueprint_inventory_visible)
 		if blueprint_inventory_visible:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			paused = true
