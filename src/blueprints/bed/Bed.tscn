@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://s4olgswjv7ui"]
+[gd_scene load_steps=4 format=3 uid="uid://s4olgswjv7ui"]
+
+[ext_resource type="Material" uid="uid://ddgqn217e1hrc" path="res://assets/materials/wood.tres" id="1_7yvr7"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dmivd"]
+material = ExtResource("1_7yvr7")
 radius = 0.231
 height = 3.0
 radial_segments = 4
