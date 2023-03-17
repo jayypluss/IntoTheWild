@@ -23,8 +23,6 @@ func on_inventory_interact(blueprint_inventory_data: BlueprintSlotData,
 	if clicked_slot and double_click:
 		await get_tree().create_timer(0.05).timeout
 		hold_blueprint(clicked_slot.item_data)
-		
-
 
 func enter_just_pressed():
 	if blueprint_mode:
@@ -37,6 +35,7 @@ func hold_blueprint(blueprint: Blueprint):
 	if !player.placement_ray.is_holding_blueprint():
 		var node = blueprint.body_scene
 		var instance = node.instantiate()
+		instance.visible = false
 		player.placement_ray.add_child(instance)
 		player.placement_ray.setup_blueprint()
 		chose_blueprint.emit()
@@ -50,10 +49,13 @@ func close():
 	blueprint_mode = false
 
 func toggle_blueprint_visibility() -> bool:
-	blueprint_inventory.visible = !blueprint_inventory.visible
-	blueprint_mode = blueprint_inventory.visible
+	set_blueprints_inventory_visibility(!blueprint_inventory.visible)
 	return blueprint_inventory.visible
 
 func set_blueprints_inventory_visibility(new_value: bool):
 	blueprint_inventory.visible = new_value
 	blueprint_mode = blueprint_inventory.visible
+	if blueprint_mode:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
