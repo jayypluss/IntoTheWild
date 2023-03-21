@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://src/levels/level_1/level_1.gd" id="1_pn17q"]
 [ext_resource type="PackedScene" uid="uid://bltf1nqn2mtqa" path="res://src/player/player.tscn" id="1_qtwv6"]
 [ext_resource type="Script" path="res://src/environment/water/water.gd" id="3_28qfp"]
+[ext_resource type="Material" uid="uid://gxy87akgsv35" path="res://assets/materials/grass_path_2/grass_path_2.tres" id="3_ch775"]
 [ext_resource type="Shader" path="res://assets/shaders/water.gdshader" id="3_hff7e"]
-[ext_resource type="Material" uid="uid://cxtppegqahg6u" path="res://assets/materials/grass.tres" id="3_lhyhw"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_e14nr"]
 top_radius = 100.0
@@ -12,7 +12,6 @@ height = 0.2
 cap_bottom = false
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lfny6"]
-sky_top_color = Color(0.384314, 0.756863, 1, 1)
 sky_horizon_color = Color(0, 1, 0.709804, 1)
 ground_bottom_color = Color(0, 0.454902, 1, 1)
 ground_horizon_color = Color(0, 0.454902, 1, 1)
@@ -55,7 +54,7 @@ use_collision = true
 collision_layer = 2
 collision_mask = 7
 mesh = SubResource("CylinderMesh_e14nr")
-material = ExtResource("3_lhyhw")
+material = ExtResource("3_ch775")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_x5gw1")
