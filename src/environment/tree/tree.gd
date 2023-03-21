@@ -33,12 +33,25 @@ func get_chopping_progress():
 func get_progress_bar():
 	return progress_bar
 
+func choose_one_from_array(array: Array[float]) -> float:
+	return array[randi() % array.size()]
+
+# Returns one random value that's between -b and -a or  +a and +b. 
+func randf_from_two_mirrored_ranges(a: float, b: float) -> float:
+	var rand_a = randf_range(a, b)
+	var rand_b = randf_range(-b, -a)
+	return choose_one_from_array([rand_a, rand_b])
+
 func break_tree():
 	bush.freeze = false
-	bush.apply_impulse(Vector3(0, 0, 5))
+	var bush_impulse_x_1 = randf_range(-10, -5)
+	var bush_impulse_x_2 = randf_range(5, 10)
+	var bush_impulse_z_1 = randf_range(-10, -5)
+	var bush_impulse_z_2 = randf_range(5, 10)
+	bush.apply_impulse(Vector3(randf_from_two_mirrored_ranges(20, 30), 0, randf_from_two_mirrored_ranges(20, 30)))
 	wood_trunk.add_to_group('Holdables')
 	wood_trunk.freeze = false
-	wood_trunk.apply_impulse(Vector3(0, 0, -5))
+	wood_trunk.apply_impulse(Vector3(randf_from_two_mirrored_ranges(60, 70), 0, randf_from_two_mirrored_ranges(60, 70)))
 	wood_trunk.reparent(get_tree().current_scene)
 	is_broken = true
 	progress_bar.visible = false
