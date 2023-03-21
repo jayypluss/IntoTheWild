@@ -42,12 +42,12 @@ func place_blueprint():
 		var blueprint = get_child(0)
 		if blueprint:
 			blueprint.reparent(get_tree().current_scene)
-			for child in blueprint.get_children(true):
-				if child.is_class('CSGMesh3D'):
-					child.material = null
-				for grandchildren in child.get_children(true):
-					if grandchildren.is_class('CSGMesh3D'):
-						grandchildren.material = null
+#			for child in blueprint.get_children(true):
+#				if child.is_class('CSGMesh3D'):
+#					child.material = null
+#				for grandchildren in child.get_children(true):
+#					if grandchildren.is_class('CSGMesh3D'):
+#						grandchildren.material = null
 			
 
 func is_holding_blueprint() -> bool:

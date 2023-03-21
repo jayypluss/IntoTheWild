@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_erdgi")
+name = ""
+description = ""
 category = ""
-recipe = Array[Resource("res://src/metadata/types/item/item.gd")]([])
-metadata/_editor_prop_ptr_mesh = null
+recipe = Array[Resource("res://src/metadata/types/blueprint_recipe_item/blueprint_recipe_item.gd")]([])

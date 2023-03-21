@@ -44,10 +44,6 @@ func randf_from_two_mirrored_ranges(a: float, b: float) -> float:
 
 func break_tree():
 	bush.freeze = false
-	var bush_impulse_x_1 = randf_range(-10, -5)
-	var bush_impulse_x_2 = randf_range(5, 10)
-	var bush_impulse_z_1 = randf_range(-10, -5)
-	var bush_impulse_z_2 = randf_range(5, 10)
 	bush.apply_impulse(Vector3(randf_from_two_mirrored_ranges(20, 30), 0, randf_from_two_mirrored_ranges(20, 30)))
 	wood_trunk.add_to_group('Holdables')
 	wood_trunk.freeze = false

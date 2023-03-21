@@ -6,14 +6,14 @@ class_name Blueprint
 @export var category: String = ''
 @export var body_scene: PackedScene = null
 @export var texture: AtlasTexture = null
-@export var recipe:= ['']
+@export var recipe: Array[BlueprintRecipeItem] = [null]
 
 func _init(p_name = '',
 	p_description = '',
 	p_category = '',
 	p_body_scene = null,
 	p_texture = null,
-	p_recipe = ['']):
+	p_recipe = [null]):
 		name = p_name
 		description = p_description
 		category = p_category
