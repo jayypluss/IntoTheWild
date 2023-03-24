@@ -43,3 +43,6 @@ func _on_last_position_timer_timeout():
 func die():
 	position = last_floor_position
 
+func is_holding_recipe_item(_owner: Node3D):
+	print('hand.holding_item: ', hand.is_holding_something())
+	return true

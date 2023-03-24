@@ -36,7 +36,10 @@ func _physics_process(_delta):
 			if throw:
 				holding_item = null
 				holding_item_pos = ''
-			
+
+func is_holding_something():
+	return !!holding_item
+
 func hold_item(item: Node3D, item_placement: String = 'right'):
 	holding_item = item
 	holding_item_pos = item_placement

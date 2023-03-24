@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://s4olgswjv7ui"]
+[gd_scene load_steps=5 format=3 uid="uid://s4olgswjv7ui"]
 
 [ext_resource type="Material" uid="uid://ddgqn217e1hrc" path="res://assets/materials/wood.tres" id="1_7yvr7"]
+[ext_resource type="PackedScene" uid="uid://ci5nouwxxtxxh" path="res://src/blueprints/interaction_area.tscn" id="2_y3cy6"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_dmivd"]
 material = ExtResource("1_7yvr7")
@@ -34,3 +35,9 @@ mesh = SubResource("CapsuleMesh_dmivd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_07x3b")
+
+[node name="InteractionArea" parent="." instance=ExtResource("2_y3cy6")]
+
+[connection signal="area_shape_entered" from="InteractionArea" to="InteractionArea" method="_on_area_shape_entered"]
+
+[editable path="InteractionArea"]
