@@ -12,6 +12,8 @@ func _physics_process(_delta):
 		if Game.player.hand.is_holding_something():
 			if Input.is_action_just_pressed('deposit'):
 				print('Game.player.hand.holding_item: ', Game.player.hand.holding_item)
+				print('owner: ', owner)
+				print('Game.player.hand.holding_item.owner: ', Game.player.hand.holding_item.owner)
 				get_viewport().set_input_as_handled()
 			if Input.is_action_just_pressed('interact'):
 				print('Game.player.hand.holding_item: ', Game.player.hand.holding_item)

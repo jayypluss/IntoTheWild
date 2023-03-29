@@ -15,4 +15,4 @@ description = "A good sleep can be done on here."
 category = "Home"
 body_scene = ExtResource("1_kl5h2")
 texture = SubResource("AtlasTexture_okwq1")
-recipe = Array[String](["1x->wood_trunk->WoodTrunk1", "1x->wood_trunk->WoodTrunk2", "1x->wood_trunk->WoodTrunk3", "1x->wood_trunk->WoodTrunk4"])
+recipe = ["1x->wood_trunk->WoodTrunk1", "1x->wood_trunk->WoodTrunk2", "1x->wood_trunk->WoodTrunk3", "1x->wood_trunk->WoodTrunk4"]

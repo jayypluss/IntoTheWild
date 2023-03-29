@@ -1,5 +1,6 @@
 @tool
 extends RigidBody3D
+class_name Collectable
 
 
 @onready var variable_mesh_node: CSGMesh3D = $VariableMeshNode

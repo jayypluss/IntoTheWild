@@ -48,7 +48,10 @@ func break_tree():
 	wood_trunk.add_to_group('Holdables')
 	wood_trunk.freeze = false
 	wood_trunk.apply_impulse(Vector3(randf_from_two_mirrored_ranges(60, 70), 0, randf_from_two_mirrored_ranges(60, 70)))
-	wood_trunk.reparent(get_tree().current_scene)
+	var holdable_item_node = preload('res://src/holdable_item/holdable_item.tscn').instantiate()
+	wood_trunk.reparent(holdable_item_node, true)
+	get_tree().current_scene.add_child(holdable_item_node)
+#	reparent(holdable_item_node, true)
 	is_broken = true
 	progress_bar.visible = false
 	timer.start()
@@ -63,7 +66,7 @@ func _on_timer_timeout():
 	var items_data = { 'Leaf': { 'quantity': randi_range(2, 3) } }
 	for item_datum in items_data.keys():
 		for idx in range(items_data[item_datum].quantity):
-			var item_instance = preload('res://src/item/item.tscn').instantiate()
+			var item_instance = preload('res://src/collectable/collectable.tscn').instantiate()
 			item_instance.title = item_datum
 			var path = 'res://assets/3d_meshes/items/' + item_datum.to_lower() + '.tres'
 			item_instance.variable_mesh = load(path)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/environment/tree/tree.gd" id="1_7qi6v"]
 [ext_resource type="Material" uid="uid://ddgqn217e1hrc" path="res://assets/materials/wood.tres" id="2_lf5mj"]
-[ext_resource type="Script" path="res://src/environment/tree/wood_trunk.gd" id="2_p1qev"]
+[ext_resource type="Script" path="res://src/environment/tree/wood_trunk.gd" id="3_ultje"]
 
 [sub_resource type="Gradient" id="Gradient_v8v8g"]
 offsets = PackedFloat32Array(0.2, 1)
@@ -71,7 +71,7 @@ collision_mask = 3
 mass = 30.0
 sleeping = true
 freeze = true
-script = ExtResource("2_p1qev")
+script = ExtResource("3_ultje")
 
 [node name="Mesh" type="CSGCylinder3D" parent="WoodTrunk"]
 collision_layer = 2
@@ -80,15 +80,15 @@ height = 3.0
 sides = 32
 material = ExtResource("2_lf5mj")
 
-[node name="WoodTrunkCollision" type="CollisionShape3D" parent="WoodTrunk"]
+[node name="Collision" type="CollisionShape3D" parent="WoodTrunk"]
 shape = SubResource("CylinderShape3D_hpc1s")
 
-[node name="WoodInteractionArea" type="Area3D" parent="WoodTrunk"]
+[node name="InteractionArea" type="Area3D" parent="WoodTrunk"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.40095, 0)
 collision_layer = 8
 collision_mask = 8
 
-[node name="WoodAreaCollision" type="CollisionShape3D" parent="WoodTrunk/WoodInteractionArea"]
+[node name="AreaCollision" type="CollisionShape3D" parent="WoodTrunk/InteractionArea"]
 shape = SubResource("CylinderShape3D_c2je4")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
@@ -122,7 +122,7 @@ vertical_alignment = 1
 wait_time = 4.0
 one_shot = true
 
-[connection signal="area_shape_entered" from="WoodTrunk/WoodInteractionArea" to="WoodTrunk" method="_on_wood_interaction_area_area_shape_entered"]
-[connection signal="area_shape_exited" from="WoodTrunk/WoodInteractionArea" to="." method="_on_wood_interaction_area_area_shape_exited"]
-[connection signal="area_shape_exited" from="WoodTrunk/WoodInteractionArea" to="WoodTrunk" method="_on_wood_interaction_area_area_shape_exited"]
+[connection signal="area_shape_entered" from="WoodTrunk/InteractionArea" to="WoodTrunk" method="_on_wood_interaction_area_area_shape_entered"]
+[connection signal="area_shape_exited" from="WoodTrunk/InteractionArea" to="." method="_on_wood_interaction_area_area_shape_exited"]
+[connection signal="area_shape_exited" from="WoodTrunk/InteractionArea" to="WoodTrunk" method="_on_wood_interaction_area_area_shape_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
