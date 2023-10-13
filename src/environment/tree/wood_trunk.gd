@@ -1,13 +1,13 @@
 extends RigidBody3D
+class_name WoodTrunk
 
-@onready var wood_trunk_collision = $WoodTrunkCollision
+@onready var collision = $Collision
 
 var is_player_near:= false
 
 func trigger1(direction: Vector3) -> bool:
-	add_to_group('Holdables')
 	reparent(get_tree().current_scene, true)
-	wood_trunk_collision.call_deferred('set_disabled', false)
+	collision.call_deferred('set_disabled', false)
 	set_freeze_enabled(false)
 	apply_impulse(direction*10)
 		

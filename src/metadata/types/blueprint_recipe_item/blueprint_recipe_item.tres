@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="BlueprintRecipeItem" load_steps=2 format=3 uid="uid://cn1vp623olpxn"]
-
-[ext_resource type="Script" path="res://src/metadata/types/blueprint_recipe_item/blueprint_recipe_item.gd" id="1_xtn30"]
-
-[resource]
-script = ExtResource("1_xtn30")
-name = ""
-quantity = 0
-associated_node_name = ""

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8texl5rv6xfj"]
+
+[ext_resource type="Script" path="res://src/blueprints/blueprint_3d.gd" id="1_ok40u"]
+
+[node name="Blueprint" type="Node3D"]
+script = ExtResource("1_ok40u")

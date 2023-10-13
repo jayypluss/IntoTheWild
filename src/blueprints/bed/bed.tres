@@ -1,33 +1,8 @@
-[gd_resource type="Resource" script_class="Blueprint" load_steps=10 format=3 uid="uid://nuayfx4soo2l"]
+[gd_resource type="Resource" script_class="Blueprint" load_steps=5 format=3 uid="uid://nuayfx4soo2l"]
 
 [ext_resource type="Script" path="res://src/metadata/types/blueprint/blueprint.gd" id="1_7hlgs"]
 [ext_resource type="PackedScene" uid="uid://s4olgswjv7ui" path="res://src/blueprints/bed/bed.tscn" id="1_kl5h2"]
 [ext_resource type="Texture2D" uid="uid://by0pnvrmapckh" path="res://assets/sprites/#1 - Transparent Icons.png" id="2_asrue"]
-[ext_resource type="Script" path="res://src/metadata/types/blueprint_recipe_item/blueprint_recipe_item.gd" id="2_yemfp"]
-
-[sub_resource type="Resource" id="Resource_m5du7"]
-script = ExtResource("2_yemfp")
-name = "wood_trunk"
-quantity = 1
-associated_node_name = "WoodTrunk1"
-
-[sub_resource type="Resource" id="Resource_vt1vc"]
-script = ExtResource("2_yemfp")
-name = "wood_trunk"
-quantity = 1
-associated_node_name = "WoodTrunk2"
-
-[sub_resource type="Resource" id="Resource_4f3ln"]
-script = ExtResource("2_yemfp")
-name = "wood_trunk"
-quantity = 1
-associated_node_name = "WoodTrunk3"
-
-[sub_resource type="Resource" id="Resource_jgc50"]
-script = ExtResource("2_yemfp")
-name = "wood_trunk"
-quantity = 1
-associated_node_name = "WoodTrunk4"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_okwq1"]
 atlas = ExtResource("2_asrue")
@@ -40,4 +15,4 @@ description = "A good sleep can be done on here."
 category = "Home"
 body_scene = ExtResource("1_kl5h2")
 texture = SubResource("AtlasTexture_okwq1")
-recipe = Array[ExtResource("2_yemfp")]([SubResource("Resource_m5du7"), SubResource("Resource_vt1vc"), SubResource("Resource_4f3ln"), SubResource("Resource_jgc50")])
+recipe = ["1x->wood_trunk->WoodTrunk1", "1x->wood_trunk->WoodTrunk2", "1x->wood_trunk->WoodTrunk3", "1x->wood_trunk->WoodTrunk4"]
