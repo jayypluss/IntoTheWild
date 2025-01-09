@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=9 format=3 uid="uid://dxonc4xpqyegk"]
 
 [ext_resource type="Script" path="res://src/item/item.gd" id="1_tj6go"]
 
@@ -45,10 +45,10 @@ collision_mask = 2
 script = ExtResource("1_tj6go")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "mesh_rotation"
 libraries = {
 "": SubResource("AnimationLibrary_kvmnc")
 }
+autoplay = "mesh_rotation"
 
 [node name="AuraMesh" type="CSGMesh3D" parent="."]
 mesh = SubResource("SphereMesh_iqg6e")

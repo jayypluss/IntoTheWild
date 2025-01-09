@@ -13,5 +13,3 @@ func _init(p_name = '',
 		name = p_name
 		quantity = p_quantity
 		associated_node_name = p_associated_node_name
-
-

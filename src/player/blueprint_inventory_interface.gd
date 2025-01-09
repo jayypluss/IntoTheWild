@@ -1,5 +1,5 @@
 extends Control
-class_name BlueprintsManagement
+class_name BlueprintInventoryInterface
 
 
 signal chose_blueprint()
