@@ -1,35 +1,40 @@
 extends Control
-class_name BlueprintInventoryInterface
+class_name BlueprintInventoryControl
 
 
 signal chose_blueprint()
 
 @onready var player: Player
-@onready var blueprint_inventory: PanelContainer = $BlueprintsInventory
+@onready var blueprint_inventory: BlueprintsInventory = $BlueprintsInventory
 
 var blueprint_mode:= false
 
 
 func _ready():
 	player = self.owner
+	blueprint_inventory.blueprints_grid.item_selected.connect(func(index):
+		#var all_selected = player.hud.blueprints_inventory_control.blueprint_inventory.blueprints_grid.get_selected_items()
+		#if all_selected and all_selected.size() > 0:
+			#var selected_index = all_selected[0];
+		hold_blueprint(blueprint_inventory.available_blueprints[index])
+	)
 
-func set_player_blueprints_inventory_data(blueprint_inventory_data: BlueprintSlotData) -> void:
-	blueprint_inventory_data.inventory_interact.connect(on_inventory_interact)
-	blueprint_inventory.set_blueprints_inventory_data(blueprint_inventory_data)
+func set_player_blueprints_inventory_data(blueprints: Blueprints) -> void:
+	blueprints.inventory_interact.connect(on_inventory_interact)
 
-func on_inventory_interact(blueprint_inventory_data: BlueprintSlotData,
+func on_inventory_interact(blueprints: Blueprints,
 		index: int, _button: int, double_click: bool) -> void:
-	var clicked_slot = blueprint_inventory_data.slot_data[index]
+	var clicked_slot = blueprints.slot_data[index]
 	if clicked_slot and double_click:
 		await get_tree().create_timer(0.05).timeout
 		hold_blueprint(clicked_slot.item_data)
 
-func enter_just_pressed():
-	if blueprint_mode:
-		var all_selected = player.hud.blueprints_list.get_selected_items()
-		player.hud.close()
-		if all_selected and all_selected.size() > 0:
-			hold_blueprint(all_selected[0])
+#func enter_just_pressed():
+	#if blueprint_mode:
+		#var all_selected = player.hud.blueprints_inventory_control.blueprint_inventory.blueprints_grid.get_selected_items()
+		#close()
+		#if all_selected and all_selected.size() > 0:
+			#hold_blueprint(all_selected[0])
 
 func hold_blueprint(blueprint: Blueprint):
 	if !player.placement_ray.is_holding_blueprint():

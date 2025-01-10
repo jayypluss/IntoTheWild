@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://daalkv51xs06p"]
 
-[ext_resource type="Script" path="res://src/blueprints/blueprint.gd" id="1_4bnyd"]
+[ext_resource type="Script" path="res://src/blueprint/blueprint.gd" id="1_4bnyd"]
 [ext_resource type="Script" path="res://src/metadata/types/blueprint/blueprint.gd" id="2_anhn5"]
 [ext_resource type="Script" path="res://src/metadata/types/blueprint_recipe_item/blueprint_recipe_item.gd" id="2_c2tee"]
 

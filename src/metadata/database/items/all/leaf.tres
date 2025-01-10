@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://db5630b5v00w4"]
+
+[ext_resource type="Script" path="res://src/metadata/types/item/item.gd" id="1_coyw7"]
+[ext_resource type="CapsuleMesh" uid="uid://cb2vh5jd7ep8" path="res://assets/3d_meshes/items/leaf.tres" id="1_v1mkt"]
+
+[resource]
+script = ExtResource("1_coyw7")
+name = "Leaf"
+type = "collectable"
+mesh = ExtResource("1_v1mkt")

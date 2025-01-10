@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Items" load_steps=4 format=3 uid="uid://b3lwh8pv2x212"]
+
+[ext_resource type="Script" path="res://src/metadata/types/item/item.gd" id="1_f43yx"]
+[ext_resource type="Resource" uid="uid://db5630b5v00w4" path="res://src/metadata/database/items/all/leaf.tres" id="2_mxael"]
+[ext_resource type="Script" path="res://src/metadata/database/items/items.gd" id="2_rh5mm"]
+
+[resource]
+script = ExtResource("2_rh5mm")
+items = Array[ExtResource("1_f43yx")]([ExtResource("2_mxael")])

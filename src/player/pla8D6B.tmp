@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://bltf1nqn2mtqa"]
+[gd_scene load_steps=25 format=3 uid="uid://bltf1nqn2mtqa"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1"]
 [ext_resource type="Script" path="res://src/player/input/input.gd" id="2_6ltf4"]
+[ext_resource type="Script" path="res://src/metadata/types/blueprint/blueprint.gd" id="2_7qpv7"]
 [ext_resource type="Script" path="res://src/player/camera/hand.gd" id="4_y05fh"]
 [ext_resource type="Script" path="res://src/player/camera/blueprint_placement.gd" id="5_1pxnq"]
 [ext_resource type="Script" path="res://src/player/hud/hud.gd" id="5_d1wna"]
@@ -11,7 +12,8 @@
 [ext_resource type="Script" path="res://src/player/hud/item_list.gd" id="7_dhfqa"]
 [ext_resource type="Theme" uid="uid://db51ncs4eb7e0" path="res://assets/ui-theme.tres" id="9_tuk0o"]
 [ext_resource type="PackedScene" uid="uid://dfrqqlo52hyyg" path="res://src/gui/blueprint_inventory/blueprint_inventory.tscn" id="9_vbrei"]
-[ext_resource type="Script" path="res://src/player/blueprint_inventory_control.gd" id="10_wwlr2"]
+[ext_resource type="Script" path="res://src/player/blueprint_inventory_interface.gd" id="10_wwlr2"]
+[ext_resource type="Resource" uid="uid://nuayfx4soo2l" path="res://src/metadata/database/blueprints/all/bed.tres" id="12_w0dsv"]
 [ext_resource type="Script" path="res://src/player/items_inventory_control.gd" id="13_xoly5"]
 [ext_resource type="Script" path="res://src/metadata/types/selectable_item_shortcut/selectable_item_shortcut.gd" id="14_4ny37"]
 [ext_resource type="Script" path="res://src/metadata/types/item/item.gd" id="15_7jl6t"]
@@ -117,7 +119,6 @@ grow_vertical = 2
 script = ExtResource("10_wwlr2")
 
 [node name="BlueprintsInventory" parent="PlayerHUD/BlueprintsInventoryControl" instance=ExtResource("9_vbrei")]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.104
@@ -128,6 +129,7 @@ offset_left = -12.808
 offset_top = -2.64
 offset_right = 7.24799
 offset_bottom = 2.39999
+available_blueprints = Array[ExtResource("2_7qpv7")]([ExtResource("12_w0dsv")])
 
 [node name="LastInputIndicator" type="Control" parent="PlayerHUD"]
 layout_mode = 1

@@ -9,12 +9,12 @@ var blueprint_mode:= false
 func _ready():
 	player = self.owner
 
-func enter_just_pressed():
-	if blueprint_mode:
-		var all_selected = player.hud.blueprints_list.get_selected_items()
-		player.hud.close()
-		if all_selected and all_selected.size() > 0:
-			hold_blueprint(all_selected[0])
+#func enter_just_pressed():
+	#if blueprint_mode:
+		#var all_selected = player.hud.blueprints_list.get_selected_items()
+		#player.hud.close()
+		#if all_selected and all_selected.size() > 0:
+			#hold_blueprint(all_selected[0])
 
 func toggle_blueprint_mode():
 	blueprint_mode = player.blueprint_inventory_control.toggle_blueprint_mode()

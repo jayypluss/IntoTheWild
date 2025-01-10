@@ -61,8 +61,8 @@ func blueprints():
 		
 		player.camera_pivot.paused = paused
 		
-	if Input.is_action_just_pressed('enter'):
-		player.blueprint_inventory_control.enter_just_pressed()
+	#if Input.is_action_just_pressed('enter'):
+		#player.blueprint_inventory_control.enter_just_pressed()
 
 
 func skills():

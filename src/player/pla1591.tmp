@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://src/player/hud/item_list.gd" id="7_dhfqa"]
 [ext_resource type="Theme" uid="uid://db51ncs4eb7e0" path="res://assets/ui-theme.tres" id="9_tuk0o"]
 [ext_resource type="PackedScene" uid="uid://dfrqqlo52hyyg" path="res://src/gui/blueprint_inventory/blueprint_inventory.tscn" id="9_vbrei"]
-[ext_resource type="Script" path="res://src/player/blueprint_inventory_control.gd" id="10_wwlr2"]
+[ext_resource type="Script" path="res://src/player/blueprint_inventory_interface.gd" id="10_wwlr2"]
 [ext_resource type="Script" path="res://src/player/items_inventory_control.gd" id="13_xoly5"]
 [ext_resource type="Script" path="res://src/metadata/types/selectable_item_shortcut/selectable_item_shortcut.gd" id="14_4ny37"]
 [ext_resource type="Script" path="res://src/metadata/types/item/item.gd" id="15_7jl6t"]
@@ -124,10 +124,11 @@ anchor_left = 0.104
 anchor_top = 0.305
 anchor_right = 0.551
 anchor_bottom = 0.7
-offset_left = -12.808
-offset_top = -2.64
-offset_right = 7.24799
-offset_bottom = 2.39999
+offset_left = -8.808
+offset_top = 106.36
+offset_right = -483.752
+offset_bottom = -109.6
+grow_vertical = 2
 
 [node name="LastInputIndicator" type="Control" parent="PlayerHUD"]
 layout_mode = 1

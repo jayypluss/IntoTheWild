@@ -1,7 +1,7 @@
 extends Control
 class_name PlayerHUD
 
-@onready var blueprints_inventory_control: Control = $BlueprintsInventoryControl
+@onready var blueprints_inventory_control: BlueprintInventoryControl = $BlueprintsInventoryControl
 @onready var inventory_control: Control = $ItemsInventoryControl
 
 var items: Dictionary = {  }

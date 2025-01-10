@@ -18,10 +18,10 @@ config/main_scene=""
 
 [autoload]
 
-Game="*res://src/blueprints/game/game/game.gd"
-Configurations="*res://src/blueprints/game/configs/configurations.gd"
-GlobalTools="*res://src/blueprints/game/global_tools/global_tools.gd"
-Metadata="*res://src/metadata/metadata.gd"
+Game="*res://src/game/game/game.gd"
+Configurations="*res://src/game/configs/configurations.gd"
+GlobalTools="*res://src/game/global_tools/global_tools.gd"
+Metadata="*res://src/metadata/database/database.gd"
 
 [input]
 

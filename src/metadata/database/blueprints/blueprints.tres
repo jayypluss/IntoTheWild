@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Blueprints" load_steps=3 format=3 uid="uid://du4nr15owej6t"]
+
+[ext_resource type="Script" path="res://src/metadata/types/blueprint/blueprint.gd" id="1_bvh86"]
+[ext_resource type="Script" path="res://src/metadata/database/blueprints/blueprints.gd" id="1_y6dmg"]
+
+[resource]
+script = ExtResource("1_y6dmg")
+blueprints = Array[ExtResource("1_bvh86")]([])

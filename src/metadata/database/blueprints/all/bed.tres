@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Blueprint" load_steps=10 format=3 uid="uid://nuayfx4soo2l"]
 
 [ext_resource type="Script" path="res://src/metadata/types/blueprint/blueprint.gd" id="1_7hlgs"]
-[ext_resource type="PackedScene" uid="uid://s4olgswjv7ui" path="res://src/blueprints/bed/Bed.tscn" id="1_kl5h2"]
+[ext_resource type="PackedScene" uid="uid://s4olgswjv7ui" path="res://src/metadata/database/blueprints/all/bed.tscn" id="1_kl5h2"]
 [ext_resource type="Texture2D" uid="uid://by0pnvrmapckh" path="res://assets/sprites/#1 - Transparent Icons.png" id="2_asrue"]
 [ext_resource type="Script" path="res://src/metadata/types/blueprint_recipe_item/blueprint_recipe_item.gd" id="2_yemfp"]
 

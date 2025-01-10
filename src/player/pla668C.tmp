@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://src/player/hud/item_list.gd" id="7_dhfqa"]
 [ext_resource type="Theme" uid="uid://db51ncs4eb7e0" path="res://assets/ui-theme.tres" id="9_tuk0o"]
 [ext_resource type="PackedScene" uid="uid://dfrqqlo52hyyg" path="res://src/gui/blueprint_inventory/blueprint_inventory.tscn" id="9_vbrei"]
-[ext_resource type="Script" path="res://src/player/blueprint_inventory_control.gd" id="10_wwlr2"]
+[ext_resource type="Script" path="res://src/player/blueprint_inventory_interface.gd" id="10_wwlr2"]
 [ext_resource type="Script" path="res://src/player/items_inventory_control.gd" id="13_xoly5"]
 [ext_resource type="Script" path="res://src/metadata/types/selectable_item_shortcut/selectable_item_shortcut.gd" id="14_4ny37"]
 [ext_resource type="Script" path="res://src/metadata/types/item/item.gd" id="15_7jl6t"]
@@ -117,7 +117,6 @@ grow_vertical = 2
 script = ExtResource("10_wwlr2")
 
 [node name="BlueprintsInventory" parent="PlayerHUD/BlueprintsInventoryControl" instance=ExtResource("9_vbrei")]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.104
