@@ -3,15 +3,16 @@
 [ext_resource type="Script" path="res://src/metadata/items/items.gd" id="1_b3pxf"]
 [ext_resource type="Script" path="res://src/metadata/types/item/item.gd" id="1_rb3os"]
 
-[sub_resource type="Resource" id="Resource_tplj5"]
+[sub_resource type="Resource" id="Resource_me7dy"]
 script = ExtResource("1_rb3os")
+name = "leaf"
 type = "collectable"
 
-[sub_resource type="Resource" id="Resource_xt3vk"]
+[sub_resource type="Resource" id="Resource_50gg4"]
 script = ExtResource("1_rb3os")
+name = "wood_trunk"
 type = "holdable"
 
 [resource]
 script = ExtResource("1_b3pxf")
-leaf = SubResource("Resource_tplj5")
-wood_trunk = SubResource("Resource_xt3vk")
+items = Array[ExtResource("1_rb3os")]([SubResource("Resource_me7dy"), SubResource("Resource_50gg4")])

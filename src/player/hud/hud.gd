@@ -1,12 +1,10 @@
-extends CanvasLayer
+extends Control
 class_name PlayerHUD
 
 @onready var blueprints_inventory_control: Control = $BlueprintsInventoryControl
 @onready var inventory_control: Control = $ItemsInventoryControl
 
-
 var items: Dictionary = {  }
-
 
 func _process(_delta):
 	if Input.is_action_just_pressed('toggle_inventory'):
@@ -24,4 +22,3 @@ func add_item_to_inventory(item_node: Node3D):
 func close_hud_windows():
 	inventory_control.set_inventory_visibility(false)
 	blueprints_inventory_control.set_blueprints_inventory_visibility(false)
-

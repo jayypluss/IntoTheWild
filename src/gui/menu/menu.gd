@@ -3,8 +3,7 @@ extends Control
 
 @onready var buttons_container := $ButtonsContainer
 @onready var start_button := $ButtonsContainer/StartButton
-@onready var credits_button := $ButtonsContainer/CreditsButton
-@onready var exit_button := $ButtonsContainer/ExitButton
+@onready var exit_button: Button = $ButtonsContainer/ExitButton
 @onready var Game_version_label := $Version/GameVersion
 @onready var godot_version_label := $Version/GodotVersion
 

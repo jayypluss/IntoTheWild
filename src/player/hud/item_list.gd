@@ -1,10 +1,14 @@
 extends ItemList
 
 var shortcuts_allocation := ['chopping_magic', '', '', '', '', '', '', '', '', '']
+@export var shortcuts: Array[SelectableItemShortcut]
 
 func _ready():
 	for i in shortcuts_allocation.size():
 		set_item_text(i, shortcuts_allocation[i])
+
+	for i in shortcuts.size():
+		set_item_metadata(i, shortcuts[i])
 
 	select_item(0)
 
@@ -19,4 +23,3 @@ func select_item(idx: int):
 	select(idx)
 	if Game.player:
 		Game.player.skills.set_selected_skill(shortcuts_allocation[idx])
-

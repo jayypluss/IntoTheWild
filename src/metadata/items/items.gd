@@ -1,9 +1,7 @@
 extends Resource
 class_name Items
 
-@export var leaf: Item = null
-@export var wood_trunk: Item = null
+@export var items: Array[Item]
 
-func _init(p_leaf = null):
-	leaf = p_leaf
-	
+func _init(p_items: Array[Item] = []):
+	items = p_items

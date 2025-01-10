@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SelectableItemShortcut" load_steps=3 format=3 uid="uid://43pm51bi743n"]
+
+[ext_resource type="Script" path="res://src/metadata/types/blueprint_recipe_item/blueprint_recipe_item.gd" id="1_ultxx"]
+[ext_resource type="Script" path="res://src/metadata/types/selectable_item_shortcut/selectable_item_shortcut.gd" id="2_gtoa3"]
+
+[resource]
+script = ExtResource("2_gtoa3")
+name = ""
+description = ""
+category = ""
+recipe = Array[ExtResource("1_ultxx")]([])
