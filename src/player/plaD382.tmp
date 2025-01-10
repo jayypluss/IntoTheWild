@@ -97,7 +97,6 @@ collision_mask = 2
 script = ExtResource("5_1pxnq")
 
 [node name="BlueprintPlacementHoldoff" type="Timer" parent="CameraPivot/Horizontal/Vertical/PlayerPlacementRay"]
-one_shot = true
 
 [node name="PlayerHUD" type="Control" parent="."]
 unique_name_in_owner = true
